@@ -196,3 +196,11 @@ their-project/
 ```
 
 `LOOPY.md` and `docs/loopy/` are the normal human-facing reading path. Humans normally do not need to open or edit `.loopy/`.
+
+## 7. Open design questions
+
+### How should Loopy support multiple teams managing different projects in one repository?
+
+**Possible answer:** Treat each project as its own Loopy scope, with its own Roadmap, Milestones, decisions, and team ownership. Add a repository-level coordination view for shared dependencies, cross-project work, and integration boundaries.
+
+**Pilot treatment:** The pilot will use one project and one team. Multi-project coordination remains a future capability to design and validate.
