@@ -32,7 +32,7 @@ Record participant and represented responsibility when applicable. Preserve an a
 
 ## Internal Engine interface
 
-Resolve the package root containing `skills/loopy/`, `engine/`, and `templates`. Before constructing an operation input, read [Living Roadmap operation input](../engine/Living-Roadmap-Apply.md). Resolve a usable Node.js executable through the Host; if `node` is unavailable in Codex, use the Host's workspace-dependency lookup. Invoke the compiled CLI with the operation command first:
+Resolve the package root containing `skills/loopy/`, `engine/`, and `templates`. Before constructing an operation input, read [Living Roadmap operation input](../engine/Living-Roadmap-Apply.md). Follow the skill's Host-specific Node.js resolution rule before the first Engine invocation. Invoke the compiled CLI with the operation command first:
 
 `<node-executable> <package-root>/runtime/dist/engine/src/cli.js <command> --source-root <package-root> --workspace <target-project> [operation-specific flags]`
 

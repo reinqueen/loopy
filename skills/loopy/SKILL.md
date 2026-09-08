@@ -49,6 +49,7 @@ Choose among these moves: probe current meaning; reflect an interpretation and a
 
 - Treat only Human-supplied or explicitly authorized material as evidence, not current human intent. Selecting a project never grants repository-wide inspection.
 - Ask and confirm only within the participant's explicit responsibility.
+- Before the first Engine operation in a Host session, resolve a usable Node.js executable. In Codex, use the workspace-dependency lookup and its absolute Node.js path before invoking the CLI; do not first assume that bare `node` is available. In another Host, use only a Node.js executable verified in that environment. Always place the Engine operation command before `--source-root`, `--workspace`, and operation-specific flags.
 - Keep human conversation here; use the Engine for formal coverage, transitions, workspace containment, history, rendering, and staleness checks.
 - Do not suggest that deterministic validation establishes semantic truth. The Host AI interprets meaning and reports coverage; the Engine validates the reported formal state.
 - Write internal state only inside the target Human project. Never create or update `.loopy` in the Loopy source repository while building or evaluating Loopy.

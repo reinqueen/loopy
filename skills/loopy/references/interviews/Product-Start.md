@@ -56,7 +56,7 @@ A non-blocking deferred uncertainty may remain. An essential deferred decision b
 
 ## Internal Engine interface
 
-Resolve the Loopy package root containing `skills/loopy/`, `engine/`, and `templates`. Resolve a usable Node.js executable through the Host; if `node` is unavailable in Codex, use the Host's workspace-dependency lookup. Invoke the compiled CLI with the operation command first, followed by the shared paths and operation-specific flags:
+Resolve the Loopy package root containing `skills/loopy/`, `engine/`, and `templates`. Follow the skill's Host-specific Node.js resolution rule before the first Engine invocation. Invoke the compiled CLI with the operation command first, followed by the shared paths and operation-specific flags:
 
 `<node-executable> <package-root>/runtime/dist/engine/src/cli.js <command> --source-root <package-root> --workspace <target-project> [operation-specific flags]`
 
