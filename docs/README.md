@@ -16,6 +16,10 @@ Choose the section that matches why you are here.
 - [Release Requirements](product/RELEASE-REQUIREMENTS.md) — requirements for making a Release claim
 - [v1 Verification Matrix](product/V1-VERIFICATION-MATRIX.md) — planned and preserved verification coverage
 
+## Leadership and pilots
+
+- [AI SDLC Pilot Deliverable](leadership/AI-SDLC-PILOT-DELIVERABLE.md) — leadership overview, lifecycle, artifacts, decisions, and the agreed real-project pilot scope
+
 ## Build or evaluate Loopy
 
 Detailed stage-experience specifications are under [`design/stages/`](design/stages/). They are for Loopy builders and evaluators, not required reading for people using Loopy.

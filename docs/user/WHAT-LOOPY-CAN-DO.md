@@ -247,7 +247,7 @@ The human observes the result and decides whether it is good enough. The respons
 
 ### Stopping boundary
 
-Acceptance makes the Milestone **Complete but unreleased**. It does not authorize deployment, publication, or a Release.
+Acceptance makes the Milestone **Outcome Accepted — not yet released or deployed**. Loopy records this internally as `Complete`; it does not authorize deployment, publication, or a Release.
 
 ### Example request
 

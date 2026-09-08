@@ -49,7 +49,7 @@ Loopy does not:
 | **Evidence** | An individual inspectable observation, such as a test result, command output, log, screenshot, recording, or human observation |
 | **Proof** | The organized case showing how evidence supports—or fails to support—the committed Milestone outcome and acceptance criteria |
 | **Demo** | A human-understandable walkthrough of the working result and relevant proof so a human can make a judgment |
-| **Complete** | A demonstrated Milestone whose outcome a human accepted; it has not necessarily been released |
+| **Outcome Accepted** | The Milestone was demonstrated and accepted by a human but has not necessarily been released or deployed. Loopy records this internally as `Complete`. |
 
 ### Proof and Demo are different
 
@@ -76,7 +76,8 @@ Define → Plan → Build and Prove → Demonstrate and Accept
   ↑                                      |
   └──────────── correction ──────────────┘
       ↓
-Complete but unreleased
+Outcome Accepted
+(Not yet released or deployed)
 ```
 
 | Stage | What happens |
