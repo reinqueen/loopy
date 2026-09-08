@@ -56,7 +56,9 @@ A non-blocking deferred uncertainty may remain. An essential deferred decision b
 
 ## Internal Engine interface
 
-Resolve the Loopy package root containing `skills/loopy/`, `engine/`, and `templates`. Use the compiled CLI at `runtime/dist/engine/src/cli.js` with `--source-root <package-root>` and `--workspace <target-project>`:
+Resolve the Loopy package root containing `skills/loopy/`, `engine/`, and `templates`. Resolve a usable Node.js executable through the Host; if `node` is unavailable in Codex, use the Host's workspace-dependency lookup. Invoke the compiled CLI with the operation command first, followed by the shared paths and operation-specific flags:
+
+`<node-executable> <package-root>/runtime/dist/engine/src/cli.js <command> --source-root <package-root> --workspace <target-project> [operation-specific flags]`
 
 Before constructing an `apply` input, read [Product Start apply input](../engine/Product-Start-Apply.md). This is internal Host-AI operating guidance; do not expose its JSON or Engine mechanics to the Human.
 
