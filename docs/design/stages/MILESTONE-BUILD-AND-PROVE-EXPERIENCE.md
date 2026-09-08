@@ -2,7 +2,7 @@
 
 > Human-approved as the Slice 7 design boundary on 2026-09-07 against exact definition baseline `463ee0ab90bd797b8f96684660f908fcc3108cb4`. Slice 6 is independently passing but has not received human implementation acceptance.
 
-This definition specializes **Build and Prove** from the accepted [Product Lifecycle](PRODUCT-LIFECYCLE.md). It preserves the committed Definition as the authoritative delivery boundary and the ready Plan as the implementation approach.
+This definition specializes **Build and Prove** from the accepted [Product Lifecycle](../../product/PRODUCT-LIFECYCLE.md). It preserves the committed Definition as the authoritative delivery boundary and the ready Plan as the implementation approach.
 
 ## Outcome and boundary
 

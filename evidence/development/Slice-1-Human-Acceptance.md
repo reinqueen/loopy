@@ -12,7 +12,7 @@ AI-operated recorded simulation task `01a0743c-ac82-7f11-a06b-ffdae9468e61` also
 
 ## Human acceptance
 
-On 2026-09-05, after reviewing the correction and evidence, the human explicitly stated: “ACCEPT SLICE1.” This accepts the corrected Slice 1 development boundary defined in [Product Start Experience](../../PRODUCT-START-EXPERIENCE.md).
+On 2026-09-05, after reviewing the correction and evidence, the human explicitly stated: “ACCEPT SLICE1.” This accepts the corrected Slice 1 development boundary defined in [Product Start Experience](../../docs/design/stages/PRODUCT-START-EXPERIENCE.md).
 
 ## Status and limitations
 

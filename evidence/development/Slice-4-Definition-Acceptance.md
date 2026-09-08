@@ -4,7 +4,7 @@
 
 The human explicitly approved the revised Loopy v1 Slice 4 Milestone Definition boundary on 2026-09-06, including the authoritative-boundary wording, independent named multi-Definition commitment, and same-revision confirmation without redundant approval.
 
-The canonical accepted boundary is [Milestone Definition Experience](../../MILESTONE-DEFINITION-EXPERIENCE.md).
+The canonical accepted boundary is [Milestone Definition Experience](../../docs/design/stages/MILESTONE-DEFINITION-EXPERIENCE.md).
 
 ## Authority and limits
 

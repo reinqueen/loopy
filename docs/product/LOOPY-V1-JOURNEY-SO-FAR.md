@@ -34,7 +34,7 @@ Every capability remains `implemented-unverified` in the [capability registry](c
 | **Current installed-package evaluation** | Not yet run. The next controlled step is a fresh Codex task using the installed Loopy plugin. | No Codex or Claude Code support claim exists yet. |
 | **Current human acceptance** | The human authorized creation of the Loopy fork. | This is not acceptance of the exact implementation, its Host behavior, or a Release. |
 
-The [verification matrix](V1-VERIFICATION-MATRIX.md) remains the compact proof plan; the [scenario guide](evaluation/scenarios/README.md) explains how transcripts, artifacts, grants, observations, and evaluator judgments must be preserved.
+The [verification matrix](V1-VERIFICATION-MATRIX.md) remains the compact proof plan; the [scenario guide](../../evaluation/scenarios/README.md) explains how transcripts, artifacts, grants, observations, and evaluator judgments must be preserved.
 
 ## Known limitations and unproven behavior
 

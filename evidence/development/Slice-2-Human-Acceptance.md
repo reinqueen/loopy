@@ -10,7 +10,7 @@ Independent focused evaluator task `01a073f3-a6dd-7f33-bb02-8c009cd2fec9` return
 
 ## Human acceptance
 
-On 2026-09-05, after reviewing the behavior, correction, and evidence, the human explicitly stated: “let’s preserve and I accept slice 2.” This accepts the Slice 2 development boundary defined in [Engineering Foundation Experience](../../ENGINEERING-FOUNDATION-EXPERIENCE.md).
+On 2026-09-05, after reviewing the behavior, correction, and evidence, the human explicitly stated: “let’s preserve and I accept slice 2.” This accepts the Slice 2 development boundary defined in [Engineering Foundation Experience](../../docs/design/stages/ENGINEERING-FOUNDATION-EXPERIENCE.md).
 
 The subsequent Product-only correction `3ababb1` changes Product Start guidance and does not alter the accepted Slice 2 Engine or Engineering boundary.
 

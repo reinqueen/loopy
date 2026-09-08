@@ -12,7 +12,7 @@ This repository currently implements the journey through:
 
 Release and Publish is not implemented yet. This preview must not be described as a released or Host-qualified Loopy version.
 
-See [Loopy v1: Journey So Far](LOOPY-V1-JOURNEY-SO-FAR.md) for the implemented behavior, tested scenarios, and current limitations.
+See [Loopy v1: Journey So Far](docs/product/LOOPY-V1-JOURNEY-SO-FAR.md) for the implemented behavior, tested scenarios, and current limitations.
 
 ## One entry point
 
@@ -24,9 +24,11 @@ Examples:
 - “Use Loopy to show me what is active and what I should do next.”
 - “Use Loopy to help define and deliver this outcome.”
 
+For first-time use, read [How to Use Loopy](docs/user/HOW-TO-USE-LOOPY.md). For the detailed behavior available at each stage, read [What Loopy Can Do](docs/user/WHAT-LOOPY-CAN-DO.md).
+
 ## Host status
 
 - **Codex:** development package; local installed-plugin qualification is required.
 - **Claude Code:** development package target; support is unverified until tested in an authenticated Claude Code environment.
 
-See [development-preview installation](docs/INSTALL.md). Installation does not establish a final Release or Host-support claim.
+See [development-preview installation](docs/user/INSTALL.md). Installation does not establish a final Release or Host-support claim. The complete documentation map is in [docs/README.md](docs/README.md).

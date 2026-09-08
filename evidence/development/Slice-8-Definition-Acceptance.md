@@ -2,7 +2,7 @@
 
 ## Decision
 
-On 2026-09-07, the human reviewed the proposed [Milestone Demonstrate and Accept](../../MILESTONE-DEMONSTRATE-AND-ACCEPT-EXPERIENCE.md) boundary created from exact source baseline `88cb8e76b7239cc5fb47393e6234c8a66dc77efa` and explicitly authorized starting Slice 8.
+On 2026-09-07, the human reviewed the proposed [Milestone Demonstrate and Accept](../../docs/design/stages/MILESTONE-DEMONSTRATE-AND-ACCEPT-EXPERIENCE.md) boundary created from exact source baseline `88cb8e76b7239cc5fb47393e6234c8a66dc77efa` and explicitly authorized starting Slice 8.
 
 This approves the fixed design boundary and authorizes its bounded implementation: exact ready-for-Demonstration entry, human-guided and AI-operated recorded Demo modes, required digestible `Demo.md`, exact-scope authority reuse, genuine flexible human judgment, candidate-bound evidence and history, deterministic correction routing, and atomic transition to Complete but unreleased.
 

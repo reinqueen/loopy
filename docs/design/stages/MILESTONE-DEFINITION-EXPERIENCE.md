@@ -2,7 +2,7 @@
 
 > Human-accepted as the Slice 4 design boundary on 2026-09-06. Implementation and later evidence remain separate; this acceptance grants no planning, implementation, release, publication, deployment, or push authority.
 
-This definition specializes Milestone Definition in the accepted [Product Lifecycle](PRODUCT-LIFECYCLE.md) without redefining earlier or later stages.
+This definition specializes Milestone Definition in the accepted [Product Lifecycle](../../product/PRODUCT-LIFECYCLE.md) without redefining earlier or later stages.
 
 ## Outcome and boundary
 

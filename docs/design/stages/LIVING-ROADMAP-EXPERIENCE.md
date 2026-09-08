@@ -2,7 +2,7 @@
 
 > Human-accepted as the Slice 3 development boundary on 2026-09-06 against exact definition commit `fe7c246`. Implementation and later evidence remain separate; this acceptance grants no release or publication authority.
 
-This definition specializes the Living Roadmap behavior in the accepted [Product Lifecycle](PRODUCT-LIFECYCLE.md) without redefining other lifecycle stages.
+This definition specializes the Living Roadmap behavior in the accepted [Product Lifecycle](../../product/PRODUCT-LIFECYCLE.md) without redefining other lifecycle stages.
 
 ## Outcome
 

@@ -2,7 +2,7 @@
 
 > Human-approved as the Slice 8 design boundary on 2026-09-07 from exact source baseline `88cb8e76b7239cc5fb47393e6234c8a66dc77efa`. Implementation and later evidence remain separate.
 
-This definition specializes **Demonstrate and Accept** from the accepted [Product Lifecycle](PRODUCT-LIFECYCLE.md). It preserves the exact Build-and-Prove result and stops before Release.
+This definition specializes **Demonstrate and Accept** from the accepted [Product Lifecycle](../../product/PRODUCT-LIFECYCLE.md). It preserves the exact Build-and-Prove result and stops before Release.
 
 ## Outcome and boundary
 

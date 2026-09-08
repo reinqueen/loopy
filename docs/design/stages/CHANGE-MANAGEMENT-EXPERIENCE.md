@@ -2,7 +2,7 @@
 
 > Human-accepted as the Slice 5 design boundary on 2026-09-07. Implementation and later evidence remain separate; this acceptance grants no planning, implementation, release, publication, deployment, or push authority.
 
-This definition specializes Change Management in the accepted [Product Lifecycle](PRODUCT-LIFECYCLE.md) without redesigning Slices 1–4.
+This definition specializes Change Management in the accepted [Product Lifecycle](../../product/PRODUCT-LIFECYCLE.md) without redesigning Slices 1–4.
 
 ## Outcome and boundary
 

@@ -2,7 +2,7 @@
 
 ## Decision
 
-On 2026-09-07, the human explicitly approved the Loopy v1 Slice 7 Milestone Build and Prove boundary in [Milestone Build and Prove](../../MILESTONE-BUILD-AND-PROVE-EXPERIENCE.md) as it existed at exact baseline commit `463ee0ab90bd797b8f96684660f908fcc3108cb4`.
+On 2026-09-07, the human explicitly approved the Loopy v1 Slice 7 Milestone Build and Prove boundary in [Milestone Build and Prove](../../docs/design/stages/MILESTONE-BUILD-AND-PROVE-EXPERIENCE.md) as it existed at exact baseline commit `463ee0ab90bd797b8f96684660f908fcc3108cb4`.
 
 ## Authority and limits
 

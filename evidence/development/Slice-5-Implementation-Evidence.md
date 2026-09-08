@@ -2,7 +2,7 @@
 
 ## Scope
 
-This record covers the bounded Change Management implementation authorized by the human-approved [Slice 5 definition](../../CHANGE-MANAGEMENT-EXPERIENCE.md). It does not accept the implementation, accept Slice 4 implementation, or authorize Planning, Build, Proof, Demonstration, Release, publication, deployment, merge, or push.
+This record covers the bounded Change Management implementation authorized by the human-approved [Slice 5 definition](../../docs/design/stages/CHANGE-MANAGEMENT-EXPERIENCE.md). It does not accept the implementation, accept Slice 4 implementation, or authorize Planning, Build, Proof, Demonstration, Release, publication, deployment, merge, or push.
 
 ## Implemented mechanics
 

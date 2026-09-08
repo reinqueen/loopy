@@ -161,7 +161,7 @@ describe("default Socratic decision-coverage interview correction", () => {
 
   it("makes a prerequisite-aware question frontier the shared default and preserves the observed regression", () => {
     const skill = readFileSync(join(sourceRoot, "skills/loopy/SKILL.md"), "utf8");
-    const lifecycle = readFileSync(join(sourceRoot, "PRODUCT-LIFECYCLE.md"), "utf8");
+    const lifecycle = readFileSync(join(sourceRoot, "docs/product/PRODUCT-LIFECYCLE.md"), "utf8");
     const product = readFileSync(join(sourceRoot, "skills/loopy/references/interviews/Product-Start.md"), "utf8");
     const engineering = readFileSync(join(sourceRoot, "skills/loopy/references/interviews/Engineering-Foundation.md"), "utf8");
     const roadmap = readFileSync(join(sourceRoot, "skills/loopy/references/interviews/Living-Roadmap.md"), "utf8");

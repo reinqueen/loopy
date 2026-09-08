@@ -4,7 +4,7 @@
 
 The human explicitly approved the Loopy v1 Slice 5 Change Management boundary on 2026-09-07.
 
-The canonical accepted boundary is [Change Management Experience](../../CHANGE-MANAGEMENT-EXPERIENCE.md). It covers routine meaning-preserving correction, material proposal and impact review, one-step acceptance and atomic reconciliation, affected-only reopening, preserved history and unaffected work, deterministic concurrency, and routing to the earliest affected lifecycle stage.
+The canonical accepted boundary is [Change Management Experience](../../docs/design/stages/CHANGE-MANAGEMENT-EXPERIENCE.md). It covers routine meaning-preserving correction, material proposal and impact review, one-step acceptance and atomic reconciliation, affected-only reopening, preserved history and unaffected work, deterministic concurrency, and routing to the earliest affected lifecycle stage.
 
 ## Authority and limits
 

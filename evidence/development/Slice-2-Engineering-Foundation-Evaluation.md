@@ -2,7 +2,7 @@
 
 ## Evaluation boundary
 
-- **Definition:** [Engineering Foundation experience](../../ENGINEERING-FOUNDATION-EXPERIENCE.md)
+- **Definition:** [Engineering Foundation experience](../../docs/design/stages/ENGINEERING-FOUNDATION-EXPERIENCE.md)
 - **Controlled scenario:** [Harbor Engineering Foundation](../../evaluation/scenarios/engineering-foundation/large-mixed-project/Scenario.md)
 - **Fixture and Product setup:** [Harbor large mixed project](../../evaluation/scenarios/product-start/large-mixed-project/Scenario.md) and its [versioned setup](../../evaluation/scenarios/product-start/large-mixed-project/setup/v1/README.md)
 - **Final candidate:** `6e111e3f912da601a4186103b895de66ac5a67bf`

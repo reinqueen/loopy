@@ -2,7 +2,7 @@
 
 ## Candidate boundary
 
-This record covers the bounded implementation of the human-approved [Milestone Planning and Conditional Guides](../../MILESTONE-PLANNING-EXPERIENCE.md) definition. It preserves the single Loopy skill and stops before implementation, Build, Proof execution, Demonstration, Release execution, worktree creation, publication, or deployment.
+This record covers the bounded implementation of the human-approved [Milestone Planning and Conditional Guides](../../docs/design/stages/MILESTONE-PLANNING-EXPERIENCE.md) definition. It preserves the single Loopy skill and stops before implementation, Build, Proof execution, Demonstration, Release execution, worktree creation, publication, or deployment.
 
 ## Builder verification
 

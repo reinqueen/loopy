@@ -8,6 +8,6 @@ This accepts the implemented capability to classify and apply routine meaning-pr
 
 ## Authority and limits
 
-Slice 5 implementation is human-accepted. Its capability status remains `implemented-unverified` until release-candidate packaging, claimed Host support, and the other evidence required by the [v1 verification matrix](../../V1-VERIFICATION-MATRIX.md) are complete.
+Slice 5 implementation is human-accepted. Its capability status remains `implemented-unverified` until release-candidate packaging, claimed Host support, and the other evidence required by the [v1 verification matrix](../../docs/product/V1-VERIFICATION-MATRIX.md) are complete.
 
 This acceptance is not release qualification and does not authorize implementation of an underlying product change, Planning, Build, Proof, Demonstration, Release, publication, deployment, merge, or push. Later slices and release claims require their own definition, implementation, evidence, and human decisions.

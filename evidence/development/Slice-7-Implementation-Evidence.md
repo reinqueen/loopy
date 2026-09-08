@@ -2,7 +2,7 @@
 
 ## Candidate boundary
 
-This record covers the bounded implementation of the human-approved [Milestone Build and Prove](../../MILESTONE-BUILD-AND-PROVE-EXPERIENCE.md) definition. It preserves the single Loopy skill and stops before Demonstration, human Milestone Acceptance, completion, Release, push, merge, deployment, publication, or open-ended external mutation.
+This record covers the bounded implementation of the human-approved [Milestone Build and Prove](../../docs/design/stages/MILESTONE-BUILD-AND-PROVE-EXPERIENCE.md) definition. It preserves the single Loopy skill and stops before Demonstration, human Milestone Acceptance, completion, Release, push, merge, deployment, publication, or open-ended external mutation.
 
 ## Builder implementation
 

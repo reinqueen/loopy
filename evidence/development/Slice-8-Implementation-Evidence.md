@@ -2,7 +2,7 @@
 
 ## Candidate boundary
 
-This record covers the bounded builder implementation of the human-approved [Milestone Demonstrate and Accept](../../MILESTONE-DEMONSTRATE-AND-ACCEPT-EXPERIENCE.md) definition. It preserves the single Loopy skill and Slices 1–7 and stops at an accepted **Complete but unreleased** Milestone or one correction, deferral, pause, or blocking action.
+This record covers the bounded builder implementation of the human-approved [Milestone Demonstrate and Accept](../../docs/design/stages/MILESTONE-DEMONSTRATE-AND-ACCEPT-EXPERIENCE.md) definition. It preserves the single Loopy skill and Slices 1–7 and stops at an accepted **Complete but unreleased** Milestone or one correction, deferral, pause, or blocking action.
 
 ## Implemented behavior
 

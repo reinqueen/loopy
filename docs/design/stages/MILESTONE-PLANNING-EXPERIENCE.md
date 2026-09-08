@@ -2,7 +2,7 @@
 
 > Human-approved as the Slice 6 design boundary on 2026-09-07 against definition commit `5a80ca6`. Implementation and later evidence remain separate; this acceptance grants no implementation, external-system, release, publication, deployment, or push authority.
 
-This definition specializes Milestone Planning and just-in-time project guides in the accepted [Product Lifecycle](PRODUCT-LIFECYCLE.md) without redesigning Slices 1–5.
+This definition specializes Milestone Planning and just-in-time project guides in the accepted [Product Lifecycle](../../product/PRODUCT-LIFECYCLE.md) without redesigning Slices 1–5.
 
 ## Outcome and boundary
 
