@@ -1,0 +1,14 @@
+version: 1
+id: milestone-definition
+source_candidate_state: Selected for definition
+authoritative_delivery_boundary: true
+semantic_coherence_owned_by_host_ai: true
+independent_definition_commitment: true
+same_revision_receipts: true
+exactly_one_next_action: true
+append_only_hash_linked_history: true
+rejected_operations_do_not_mutate: true
+ordinary_updates_may_defer_publication: true
+published_revision_metadata_required: true
+inherited_dependency_kinds_preserved: true
+later_stages_out_of_scope: true

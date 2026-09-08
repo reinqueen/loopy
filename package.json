@@ -1,0 +1,27 @@
+{
+  "name": "@loopy/product",
+  "version": "0.1.0-dev.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "build:runtime": "npm run build && node scripts/build-runtime.mjs",
+    "validate:brand": "node scripts/validate-brand.mjs",
+    "validate:package": "node scripts/validate-package.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "loopy-engine": "node runtime/dist/engine/src/cli.js"
+  },
+  "bin": {
+    "loopy-engine": "runtime/dist/engine/src/cli.js"
+  },
+  "dependencies": {
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "packageManager": "pnpm@11.19.0"
+}

@@ -1,0 +1,56 @@
+{
+  "contextGrants": [
+    {"scope": "README.md", "kind": "workspace-path", "basis": "explicitly-authorized"},
+    {"scope": "product/current-priorities.md", "kind": "workspace-path", "basis": "explicitly-authorized"}
+  ],
+  "product": {
+    "summary": "Harbor helps customers, partners, and operations respond to shipment status.",
+    "purpose": "Make shipment exceptions understandable and actionable without hiding operational risk.",
+    "primaryPeople": "Customers managing shipment exceptions",
+    "need": "Understand an exception and take a useful recovery action without waiting for support.",
+    "currentAlternative": "Contact support for interpretation and next steps.",
+    "secondaryPeople": "Integration partners and operations teams",
+    "outcome": "Customers recover more independently while partners receive stable status and operations sees risk earlier.",
+    "evidence": [
+      {"source": "Harbor README", "finding": "The repository contains portal, API, client-library, and risk-data components.", "contextScope": "README.md"},
+      {"source": "Current Product priorities", "finding": "Customer recovery is highest; partner status and operational risk are separable outcomes with dependencies.", "contextScope": "product/current-priorities.md"}
+    ],
+    "remainsTrue": ["Harbor remains one product serving customers, partners, and operations."],
+    "shouldChange": ["Customers should understand and recover from exceptions without waiting for support."],
+    "uncertain": ["The exact first recovery action and risk-signal threshold."],
+    "inScope": ["Customer recovery guidance", "Stable partner-facing status", "Earlier operational risk signals"],
+    "nonGoals": ["Committing a Milestone or release during Product Start"],
+    "constraints": ["Partner work follows stable core status meaning.", "Risk work must not delay basic customer visibility."],
+    "successSignals": ["More customers resolve exceptions without support.", "Partners adapt status with less rework.", "Operations identifies delays earlier."],
+    "assumptions": ["Consistent shipment events can support all three outcomes."],
+    "unknowns": ["Which recovery action should be delivered first."],
+    "deferrals": []
+  },
+  "roadmap": {
+    "summary": "Prioritize customer recovery while enabling partner status and operational risk outcomes.",
+    "lifecycleState": "Product foundation ready for review",
+    "lifecycleExplanation": "Required Product decisions are ready for review; no Milestone is committed.",
+    "productNotes": "Candidates follow outcomes rather than repository components.",
+    "candidates": [
+      {"title": "Customer recovery", "outcome": "Customers understand shipment exceptions and take a useful next step.", "priority": "Highest", "rationale": "This is the clearest current customer need.", "dependencies": ["Consistent core status meaning"], "nextAction": "Shape the first recovery outcome", "commitment": "uncommitted"},
+      {"title": "Partner status", "outcome": "Partners consume stable shipment status with less adaptation work.", "priority": "High", "rationale": "Partner integration can advance after status meaning stabilizes.", "dependencies": ["Stable partner-facing status semantics"], "nextAction": "Clarify the first compatibility boundary", "commitment": "uncommitted"},
+      {"title": "Operational risk", "outcome": "Operations sees meaningful delay risk before customers are affected.", "priority": "Medium", "rationale": "Earlier signals matter but must not delay customer visibility.", "dependencies": ["Reliable shipment events"], "nextAction": "Clarify the first useful risk signal", "commitment": "uncommitted"}
+    ]
+  },
+  "decisions": {
+    "purpose": {"status": "established"},
+    "people_and_need": {"status": "established"},
+    "outcome": {"status": "established"},
+    "evidence_and_intent": {"status": "established_from_evidence"},
+    "boundaries": {"status": "established"},
+    "success": {"status": "established"},
+    "roadmap_state": {"status": "established"},
+    "uncertainty": {"status": "established"}
+  },
+  "conditionalDecisions": {
+    "multiple_audiences": {"triggered": true, "status": "established", "note": "Customers are primary; partner and operations outcomes remain separately visible."}
+  },
+  "nextActions": [
+    {"participant": "Product", "action": "Review the Product foundation", "reason": "Every required Product decision has a recorded disposition."}
+  ]
+}

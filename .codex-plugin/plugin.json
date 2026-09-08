@@ -1,0 +1,26 @@
+{
+  "name": "loopy",
+  "version": "0.1.0-dev.1",
+  "description": "An outcome-focused software-delivery guide with readable artifacts, bounded AI execution, independent proof, and human judgment.",
+  "author": {
+    "name": "reinqueen",
+    "url": "https://github.com/reinqueen"
+  },
+  "repository": "https://github.com/reinqueen/loopy",
+  "keywords": ["software-delivery", "human-in-the-loop", "planning", "evaluation"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Loopy",
+    "shortDescription": "Guide software outcomes from intent to acceptance",
+    "longDescription": "Loopy is one human-facing software-delivery skill that maintains readable project context, gives AI bounded room to work, preserves independent evidence, and returns human attention where judgment matters.",
+    "developerName": "reinqueen",
+    "category": "Developer Tools",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://github.com/reinqueen/loopy",
+    "defaultPrompt": [
+      "Use Loopy to start or resume this software project.",
+      "Use Loopy to show the project state and next action.",
+      "Use Loopy to help deliver this outcome."
+    ]
+  }
+}

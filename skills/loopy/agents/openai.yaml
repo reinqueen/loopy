@@ -1,0 +1,6 @@
+interface:
+  display_name: "Loopy"
+  short_description: "Guide software outcomes with human judgment"
+  default_prompt: "Use $loopy to start or resume this software project."
+policy:
+  allow_implicit_invocation: true

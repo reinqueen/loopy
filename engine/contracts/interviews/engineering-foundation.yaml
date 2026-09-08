@@ -1,0 +1,63 @@
+version: 1
+id: establish-engineering-foundation
+responsibility: engineering
+required_product_phase: product-foundation-confirmed
+coverage:
+  - project_defaults
+  - components
+  - technology
+  - commands
+  - relationships
+  - practices_and_checks
+  - operating_context
+  - open_matters
+resolved_states:
+  - established
+  - established_from_evidence
+  - explicitly_none
+  - not_applicable
+  - deferred_non_blocking
+phases:
+  - draft
+  - blocked
+  - ready-for-engineering-confirmation
+  - engineering-foundation-confirmed
+command_confidence:
+  - observed
+  - proposed-unverified
+  - confirmed
+trigger_kinds:
+  - architecture
+  - demo-strategy
+  - release-strategy
+allowed_generated_artifacts:
+  - LOOPY.md
+  - docs/loopy/Roadmap.md
+  - docs/loopy/Engineering-Guide.md
+guarantees:
+  product_confirmation_required: true
+  loopy_state_readable_without_project_grant: true
+  project_context_requires_engineering_grant: true
+  evidence_requires_matching_grant: true
+  confirmed_commands_require_execution_evidence: true
+  blocking_deferrals_forbid_confirmation: true
+  current_review_required: true
+  engineering_only_confirmation: true
+  material_changes_reopen_engineering_only: true
+  routine_evidence_refresh_preserves_confirmation: true
+  append_only_history: true
+  exactly_one_next_action: true
+  synchronized_recoverable_writes: true
+  shared_project_views_synchronized: true
+  product_revision_anchor_requires_revisit: true
+  confirmed_route_engine_owned: true
+  workspace_containment: true
+  stale_detection: true
+  strict_runtime_validation: true
+forbidden_authority:
+  - product
+  - architecture
+  - demo-acceptance
+  - release-authorization
+  - publication
+  - deployment-authorization

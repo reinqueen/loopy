@@ -1,0 +1,26 @@
+import type { NextAction } from "./types.js";
+
+export const PLAN_PHASES = ["draft", "blocked", "ready-for-implementation", "paused"] as const;
+export const PLAN_DEPENDENCY_KINDS = ["required-before", "helpful-non-blocking", "independent-potentially-parallel"] as const;
+export const GUIDE_KINDS = ["architecture", "demo-strategy", "release-strategy"] as const;
+export type PlanPhase = (typeof PLAN_PHASES)[number];
+export type GuideKind = (typeof GUIDE_KINDS)[number];
+
+export interface PlanUnknown { description: string; blocking: boolean; revisitWhen: string }
+export interface WorkUnit { key: string; title: string; contribution: string; affectedAreas: string[]; responsibility: string; completionObservation: string; checks: string[]; workspace: "same-directory" | "separate-workspace"; order: number }
+export interface PlanDependency { from: string; to: string; kind: (typeof PLAN_DEPENDENCY_KINDS)[number]; note: string }
+export interface ParallelClaim { workUnits: string[]; disposition: "safe" | "blocked"; conflicts: string[]; basis: string }
+export interface PlanEvaluationBoundary { checkpoint: string; evaluationType: "focused-independent" | "final-integrated-independent"; workUnits: string[]; trigger: string; reason: string; correctionCycleLimit: number; required: boolean }
+export interface GuideTrigger { kind: GuideKind; mode: "blocking" | "just-in-time"; reason: string; revisitWhen: string }
+export interface PlanContent { approach: string[]; workUnits: WorkUnit[]; dependencies: PlanDependency[]; parallelism: string[]; parallelClaims: ParallelClaim[]; checksAndEvidence: string[]; evaluationBoundaries: PlanEvaluationBoundary[]; risks: string[]; unknowns: PlanUnknown[]; releaseImpact: string[] }
+export interface PlanningHistoryEntry { version: number; operation: "update" | "review" | "pause" | "resume" | "revalidate"; summary: string; beforeHash: string; afterHash: string; previousHash: string | null; contentHash: string }
+export interface MilestonePlan { id: string; definitionId: string; title: string; definitionRevision: number; artifactPath: string; order: number; phase: PlanPhase; revision: number; reviewedRevision: number | null; coherence: { status: "draft" | "blocked" | "coherent"; basis: string }; content: PlanContent; participants: Array<{ name: string; responsibility: string }>; workspaceDisposition: { mode: "same-directory" | "separate-workspace"; location: string; basis: string }; guideTriggers: GuideTrigger[]; history: PlanningHistoryEntry[]; historyHead: string | null }
+export interface ConditionalGuide { kind: GuideKind; artifactPath: string; status: "not-needed" | "draft" | "ready" | "confirmed"; revision: number; reviewedRevision: number | null; coherence: { status: "draft" | "coherent"; basis: string }; requiredPerspective: "architecture" | "demo-quality" | "release"; content: string[]; receipt: { participant: string; perspective: string; revision: number } | null }
+export interface MilestonePlanningState { schemaVersion: 1; stage: "milestone-planning"; workspaceClass: "human-project"; workspaceRoot: string; productRevision: number; engineeringRevision: number | null; roadmapRevision: number; definitionStateRevision: number; revision: number; plans: MilestonePlan[]; guides: ConditionalGuide[]; nextActions: NextAction[]; session: { status: "active" | "interrupted"; planId: string | null; resumeAction: string | null }; generatedViews: Record<string, { revision: number; sha256: string }> }
+export interface PlanningUpdate { planId: string; actor: { name: string; responsibility: string }; content?: Partial<PlanContent>; coherence?: MilestonePlan["coherence"]; participants?: MilestonePlan["participants"]; workspaceDisposition?: MilestonePlan["workspaceDisposition"]; guideTriggers?: GuideTrigger[]; guides?: Array<{ kind: GuideKind; content: string[]; coherence: ConditionalGuide["coherence"] }> }
+export interface PlanningReview { planIds: string[]; guideKinds?: GuideKind[] }
+export interface GuideConfirmation { kind: GuideKind; participant: string; perspective: "architecture" | "demo-quality" | "release" }
+export interface FoundationAnchors { productRevision: number; engineeringRevision: number | null; roadmapRevision: number; definitionStateRevision: number }
+export interface PlanningRevalidation { actor: { name: string; responsibility: string }; reviewedAnchors: FoundationAnchors; basis: string }
+export interface MilestonePlanningContract { version: 1; id: "milestone-planning"; committed_definition_required: true; plan_readiness_is_not_implementation_authority: true; semantic_coherence_owned_by_host_ai: true; independent_milestone_planning: true; conditional_guides_are_just_in_time: true; guide_confirmation_is_responsibility_bounded: true; no_plan_approval: true; evaluation_boundaries_are_plan_owned: true; mandatory_final_integrated_evaluation: true; correction_cycle_limit_is_nonnegative: true; exactly_one_next_action: true; append_only_hash_linked_history: true; ordinary_updates_may_defer_publication: true; explicit_foundation_revalidation: true; rejected_operations_do_not_mutate: true; no_worktree_creation: true; later_stages_out_of_scope: true }
+export type MilestonePlanningArtifacts = Record<string, string>;

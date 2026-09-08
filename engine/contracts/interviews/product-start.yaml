@@ -1,0 +1,123 @@
+version: 2
+id: start-or-adopt-product-foundation
+responsibility: product
+semantic_boundary:
+  host_ai: interprets conversation meaning, requests context, and reports decision coverage
+  engine: validates grants, declared coverage, transitions, history, and hard invariants
+  excluded_claim: the Engine does not judge semantic truth or infer permission
+context_boundary:
+  selecting_project_authorizes_repository_read: false
+  evidence_requires_matching_grant: true
+  whole_repository_requires_explicit_authorization: true
+  repository_equivalent_paths_require_whole_repository_grant: true
+  grant_fields_are_closed_enums: true
+  canonical_grant_identity_required: true
+  evidence_uses_normalized_scope: true
+  allowed_grant_kinds:
+    - whole-repository
+    - workspace-path
+    - external-resource
+    - supplied-content
+decision_coverage:
+  essential:
+    - purpose
+    - people_and_need
+    - outcome
+    - evidence_and_intent
+    - boundaries
+    - success
+    - roadmap_state
+  supporting:
+    - uncertainty
+  confirmation_resolved_states:
+    - established
+    - established_from_evidence
+    - explicitly_none
+    - not_applicable
+    - deferred_non_blocking
+  allowed_by_topic:
+    purpose: [established, established_from_evidence, deferred_blocking]
+    people_and_need: [established, established_from_evidence, deferred_blocking]
+    outcome: [established, established_from_evidence, deferred_blocking]
+    evidence_and_intent: [established, established_from_evidence, explicitly_none, deferred_blocking]
+    boundaries: [established, established_from_evidence, explicitly_none, deferred_blocking]
+    success: [established, established_from_evidence, deferred_blocking]
+    roadmap_state: [established, explicitly_none, deferred_blocking]
+    uncertainty: [established, explicitly_none, deferred_non_blocking]
+conditional_coverage:
+  - trigger: context_conflict
+    cover: current intent and retained conflicting evidence
+  - trigger: multiple_audiences
+    cover: primary audience and Product tradeoffs
+  - trigger: external_promise
+    cover: source and Product consequence
+  - trigger: high_consequence_use
+    cover: affected people and Product constraint
+  - trigger: replacement_or_migration
+    cover: user continuity and outcome justifying change
+state_transitions:
+  phase:
+    draft: [draft, blocked, ready-for-product-confirmation]
+    blocked: [blocked, draft, ready-for-product-confirmation]
+    ready-for-product-confirmation: [ready-for-product-confirmation, draft, blocked, product-foundation-confirmed]
+    product-foundation-confirmed: [product-foundation-confirmed, draft, blocked, ready-for-product-confirmation]
+  session:
+    active: [active, interrupted]
+    interrupted: [interrupted, active]
+allowed_generated_artifacts:
+  - LOOPY.md
+  - docs/loopy/Project-Definition.md
+  - docs/loopy/Roadmap.md
+confirmation_preconditions:
+  responsibility_must_equal: product
+  product_participation_required: true
+  current_draft_review_required: true
+  blocking_deferrals_forbidden: true
+  deferrals_and_dispositions_must_match: true
+  exactly_one_next_action: true
+roadmap_rules:
+  candidates_are_uncommitted: true
+  candidate_management_requires_approval: false
+  append_history: true
+  priority_order: [Highest, High, Medium, Later]
+  confirmed_lifecycle_state: Product foundation confirmed
+  confirmed_lifecycle_explanation: The Product foundation is confirmed; no Milestone has been committed.
+  standard_product_review_actions:
+    - Review the Product foundation
+    - Confirm the Product foundation
+  standard_post_confirmation_action: Shape this candidate before Milestone commitment
+  candidate_meaning_remains_host_ai_responsibility: true
+generated_views:
+  render_from_current_state: true
+  stale_views_are_errors: true
+  refresh_on_every_successful_state_change: true
+  validation_before_writes: true
+  staged_file_set_commit_with_rollback: true
+history:
+  confirmed_revisions_append_only: true
+  confirmed_revision_hash_chain: true
+  roadmap_revisions_append_only: true
+  roadmap_revision_hash_chain: true
+  roadmap_head_anchor_required: true
+  responsibility_receipt_in_confirmed_revision: true
+runtime_validation:
+  reject_unknown_properties: true
+  validate_persisted_enums: true
+  require_non_empty_required_strings: true
+  next_action_requires_letters_or_numbers: true
+  semantic_text_quality_remains_host_ai_and_human_evaluated: true
+  cli_option_values_must_not_be_blank: true
+  initialize_options_are_strict_before_filesystem_mutation: true
+workspace:
+  required_class: human-project
+  writes_must_remain_inside_target: true
+  initialization_refuses_existing_state: true
+forbidden_responsibility_areas:
+  - engineering
+  - architecture
+  - demo
+  - quality
+  - release
+  - publication
+  - deployment
+  - rollback

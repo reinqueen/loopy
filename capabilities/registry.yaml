@@ -1,0 +1,84 @@
+version: 1
+capabilities:
+  - id: product-start
+    title: Start or Adopt and establish Product foundation
+    lifecycle_entry: loopy
+    exposure: internal-route
+    status: implemented-unverified
+    description: Loopy creates authorized-context drafts for any starter and confirms the Product foundation only with Product participation.
+    human_artifacts:
+      - LOOPY.md
+      - docs/loopy/Project-Definition.md
+      - docs/loopy/Roadmap.md
+  - id: engineering-foundation
+    title: Establish a component-aware Engineering foundation
+    lifecycle_entry: loopy
+    exposure: internal-route
+    status: implemented-unverified
+    description: Loopy establishes and confirms Engineering guidance from explicitly authorized evidence without reopening Product meaning.
+    human_artifacts:
+      - LOOPY.md
+      - docs/loopy/Roadmap.md
+      - docs/loopy/Engineering-Guide.md
+  - id: living-roadmap
+    title: Manage the Living Roadmap
+    lifecycle_entry: loopy
+    exposure: internal-route
+    status: implemented-unverified
+    description: Loopy organizes the uncommitted portfolio and atomically routes eligible candidates to Milestone Definition without granting implementation authority.
+    human_artifacts:
+      - LOOPY.md
+      - docs/loopy/Roadmap.md
+  - id: milestone-definition
+    title: Define and commit bounded Milestones
+    lifecycle_entry: loopy
+    exposure: internal-route
+    status: implemented-unverified
+    description: Loopy creates independently reviewable Definitions from selected candidates and commits each ready, explicitly named boundary as a Planned Milestone without implementation authority.
+    human_artifacts:
+      - LOOPY.md
+      - docs/loopy/Roadmap.md
+      - docs/loopy/milestones/*/Definition.md
+  - id: change-management
+    title: Safely change confirmed or committed meaning
+    lifecycle_entry: loopy
+    exposure: internal-route
+    status: implemented-unverified
+    description: Loopy separates routine maintenance from material proposals, traces impact, and reconciles only accepted affected meaning without implementing the product change.
+    human_artifacts:
+      - LOOPY.md
+      - docs/loopy/Roadmap.md
+      - docs/loopy/changes/*/Change.md
+  - id: milestone-planning
+    title: Plan committed Milestones and establish conditional guides
+    lifecycle_entry: loopy
+    exposure: internal-route
+    status: implemented-unverified
+    description: Loopy creates bounded outcome-first Plans, makes dependencies, safe parallel work, and risk-based Build/evaluation boundaries visible, and establishes reusable Architecture, Demo, or Release guidance only when needed without authorizing implementation.
+    human_artifacts:
+      - LOOPY.md
+      - docs/loopy/Roadmap.md
+      - docs/loopy/milestones/*/Plan.md
+      - docs/loopy/Architecture.md
+      - docs/loopy/Demo-Strategy.md
+      - docs/loopy/Release-Strategy.md
+  - id: milestone-build-and-prove
+    title: Build and independently prove planned Milestones
+    lifecycle_entry: loopy
+    exposure: internal-route
+    status: implemented-unverified
+    description: Loopy executes only explicitly granted Work Units, preserves exact evidence and independent evaluation lineage, and stops at ready for Demonstration without granting acceptance or Release authority.
+    human_artifacts:
+      - LOOPY.md
+      - docs/loopy/Roadmap.md
+      - docs/loopy/milestones/*/Proof.md
+  - id: milestone-demonstrate-and-accept
+    title: Demonstrate and accept exact Milestone outcomes
+    lifecycle_entry: loopy
+    exposure: internal-route
+    status: implemented-unverified
+    description: Loopy guides or records an exact-candidate Demo, preserves digestible evidence and human judgment, and stops at Complete but unreleased without granting Release authority.
+    human_artifacts:
+      - LOOPY.md
+      - docs/loopy/Roadmap.md
+      - docs/loopy/milestones/*/Demo.md

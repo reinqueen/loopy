@@ -1,0 +1,14 @@
+# Change Management Engine input
+
+This is internal Host-AI guidance. Never show change identities, JSON, hashes, or Engine commands as the Human experience.
+
+- `change-init` starts the reusable Change Management envelope only after confirmed Product meaning exists.
+- `change-routine` applies one declared meaning-preserving target immediately. Supply a routine category, summary, actor, `meaningPreserved: true`, `meaningUncertainty: none`, a concise `classificationBasis`, and one exact target. The Engine validates this formal Host declaration; it does not determine semantic equivalence. Do not use the routine path while outcome, requirement, scope, acceptance, priority, responsibility, constraint, promise, or authority may change.
+- `change-propose` creates one complete material proposal with a readable title, reason, exact targets and base revisions, impact and unaffected work, participants, unknowns and deferrals, required perspectives, Host coherence declaration, authority request, earliest stage, and one next action. A target declares `kind`, optional `targetId`, bounded dotted `field`, `baseRevision`, replacement `value`, human current/proposed meaning, and affected artifact path.
+- `change-update` persists meaningful proposal changes and clears prior review and receipts. Ordinary incomplete updates may defer public rendering.
+- `change-review` publishes only a coherent proposal with impact, unaffected work, no essential unknown, and current bases.
+- `change-decide` records the real participant, explicitly represented perspectives, deterministic decision, and the Host's clear natural-language basis. Each `accept` preserves that participant's current-revision receipts; the final required receipt accepts and reconciles the proposal atomically. Do not synthesize a combined participant from separate responses. One person may provide several perspectives only when recorded for each on the proposal and `explicitlyRepresents` names each one. `reject`, `withdraw`, and `defer` never change accepted target meaning.
+
+There is no partial-accept input. Split separable work into distinct proposals before review. Immediately before any acceptance write, the Engine rechecks every exact target against its captured base value and revision inside the atomic transaction. Any stale target rejects the whole acceptance without changing targets, proposal state/history, or published views. A later accepted proposal touching the same target makes an older base stale; disjoint targets remain independently applicable.
+
+`change-render` explicitly publishes the current view. Pause, review, decision, and status also publish. Resume requires published views to remain current or be explicitly repaired first. Engine success is formal proof only; the Host AI remains responsible for classification, semantic coherence, impact completeness, responsibility routing, and interpreting natural-language authority.

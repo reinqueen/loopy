@@ -1,0 +1,29 @@
+version: 1
+id: living-roadmap-management
+required_product_phase: product-foundation-confirmed
+generated_artifacts:
+  - LOOPY.md
+  - docs/loopy/Roadmap.md
+priority_order:
+  - Highest
+  - High
+  - Medium
+  - Later
+candidate_states:
+  - Open
+  - Selected for definition
+  - Deferred
+  - Cancelled
+  - Superseded
+dependency_kinds:
+  - required-before
+  - helpful-non-blocking
+  - independent-potentially-parallel
+dependency_boundaries:
+  - definition
+  - implementation
+multi_selection_atomic: true
+candidates_remain_uncommitted: true
+implementation_workspace_out_of_scope: true
+append_only_hash_linked_history: true
+rejected_operations_do_not_mutate: true

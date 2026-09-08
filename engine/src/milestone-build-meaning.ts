@@ -1,0 +1,5 @@
+import { createHash } from "node:crypto";
+import type { BuildHistoryEntry, MilestoneBuild } from "./milestone-build-types.js";
+export function buildSnapshot(build:MilestoneBuild):unknown{return{id:build.id,planId:build.planId,definitionId:build.definitionId,title:build.title,artifactPath:build.artifactPath,order:build.order,definitionRevision:build.definitionRevision,planRevision:build.planRevision,phase:build.phase,revision:build.revision,grant:build.grant,evaluationBudget:build.evaluationBudget,workUnits:build.workUnits,assignments:build.assignments,candidates:build.candidates,evaluations:build.evaluations,evidence:build.evidence,failures:build.failures,limitations:build.limitations,skips:build.skips,unproven:build.unproven}}
+export function buildSnapshotHash(build:MilestoneBuild):string{return createHash("sha256").update(JSON.stringify(buildSnapshot(build))).digest("hex")}
+export function buildHistoryHash(entry:Omit<BuildHistoryEntry,"contentHash">):string{return createHash("sha256").update(JSON.stringify(entry)).digest("hex")}

@@ -1,0 +1,10 @@
+{
+  "name": "loopy",
+  "version": "0.1.0-dev.1",
+  "description": "An outcome-focused software-delivery guide with readable artifacts, bounded AI execution, independent proof, and human judgment.",
+  "author": {
+    "name": "reinqueen",
+    "url": "https://github.com/reinqueen"
+  },
+  "repository": "https://github.com/reinqueen/loopy"
+}
