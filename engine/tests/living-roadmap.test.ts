@@ -181,19 +181,18 @@ describe("Living Roadmap Management", () => {
     expect(readFileSync(join(root, ".loopy/start-or-adopt/state.json"), "utf8")).toBe(before);
   });
 
-  it("reconciles only after a newer Product revision is separately confirmed", async () => {
+  it("reconciles to a newer current Product draft without pretending it is confirmed", async () => {
     const root = await initialized();
     const candidateSnapshot = roadmapEngine.loadState(root).candidates;
     productEngine.applyUpdate(root, { product: { outcome: "Operators and partners complete work confidently." },
       nextActions: [{ participant: "Product", action: "Review the changed Product outcome", reason: "Confirmed Product meaning changed." }] });
-    expect(() => roadmapEngine.applyOperation(root, productOperation({ type: "reconcile-product" })))
-      .toThrow("Product must be confirmed");
-    await productEngine.recordProductReview(root); await productEngine.confirmProduct(root);
     const reconciled = roadmapEngine.applyOperation(root, productOperation({ type: "reconcile-product" }));
-    expect(reconciled.productRevision).toBe(2);
+    expect(reconciled.productRevision).toBe(1);
+    expect(reconciled.productDraftVersion).toBe(productEngine.loadState(root).draftVersion);
     expect(reconciled.candidates).toEqual(candidateSnapshot);
     expect(reconciled.history.at(-1)?.operation).toBe("reconcile-product");
     expect(readFileSync(join(root, "docs/loopy/Roadmap.md"), "utf8")).toContain("## Living Roadmap");
+    expect(productEngine.loadState(root).phase).toBe("ready-for-product-confirmation");
   });
 
   it("preserves pause, resume, history integrity, stale detection, and shared rendering", async () => {

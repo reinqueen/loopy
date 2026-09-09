@@ -9,7 +9,7 @@ import type { ProductStartUpdate } from "./types.js";
 import { LivingRoadmapEngine } from "./living-roadmap-engine.js";
 import type { RoadmapOperation } from "./living-roadmap-types.js";
 import { MilestoneDefinitionEngine } from "./milestone-definition-engine.js";
-import type { DefinitionCommitRequest, DefinitionUpdate } from "./milestone-definition-types.js";
+import type { DefinitionCommitRequest, DefinitionUpdate, DirectDefinitionStart } from "./milestone-definition-types.js";
 import { ChangeManagementEngine } from "./change-management-engine.js";
 import type { ChangeDecision, CreateMaterialChange, RoutineChangeRequest, UpdateMaterialChange } from "./change-management-types.js";
 import { MilestonePlanningEngine } from "./milestone-planning-engine.js";
@@ -93,7 +93,12 @@ async function main(): Promise<void> {
   if (command.startsWith("definition-")) {
     const engine = await MilestoneDefinitionEngine.create(sourceRoot);
     switch (command) {
-      case "definition-init": console.log(JSON.stringify(engine.initialize(workspace), null, 2)); return;
+      case "definition-init": {
+        const state = options["--input"]
+          ? await engine.initializeDirect(workspace, JSON.parse(await readFile(resolve(options["--input"]), "utf8")) as DirectDefinitionStart)
+          : engine.initialize(workspace);
+        console.log(JSON.stringify(state, null, 2)); return;
+      }
       case "definition-apply": {
         const update = JSON.parse(await readFile(resolve(options["--input"]), "utf8")) as DefinitionUpdate;
         console.log(JSON.stringify(engine.applyUpdate(workspace, update), null, 2)); return;

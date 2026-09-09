@@ -57,7 +57,7 @@ export class LivingRoadmapEngine {
     if (root === this.sourceRoot) throw new WorkspaceError("Loopy source cannot become its own Human project.");
     if (exists(resolveInsideWorkspace(root, LIVING_ROADMAP_STATE_PATH))) throw new ContractError("Living Roadmap already exists. Use roadmap-status or roadmap-resume.");
     const product = this.productEngine.loadState(root);
-    if (product.phase !== this.contract.required_product_phase) throw new ContractError("A confirmed Product foundation is required before Living Roadmap management.");
+    if (!this.contract.allowed_product_phases.includes(product.phase)) throw new ContractError("The current Product state cannot support Roadmap work.");
     const candidates: LivingRoadmapCandidate[] = product.roadmap.candidates.map((candidate, index) => ({
       id: `candidate-${index + 1}`,
       title: candidate.title,
@@ -77,7 +77,7 @@ export class LivingRoadmapEngine {
     }));
     const state: LivingRoadmapState = {
       schemaVersion: 1, stage: "living-roadmap", workspaceClass: "human-project", workspaceRoot: root,
-      productRevision: product.revision, revision: 0, nextCandidateNumber: candidates.length + 1,
+      productRevision: product.revision, productDraftVersion: product.draftVersion, revision: 0, nextCandidateNumber: candidates.length + 1,
       candidates, selectedBatches: [], nextActions: [], session: { status: "active", resumeAction: null },
       history: [], historyHead: null, generatedViews: {},
     };
@@ -158,8 +158,8 @@ export class LivingRoadmapEngine {
 
   private assertCurrentProduct(workspaceRoot: string, state: LivingRoadmapState): void {
     const product = this.productEngine.loadState(workspaceRoot);
-    if (product.phase !== "product-foundation-confirmed" || product.revision !== state.productRevision) {
-      throw new ContractError("Living Roadmap is not anchored to the current confirmed Product foundation; reconcile Product meaning before portfolio work.");
+    if (product.revision !== state.productRevision || (state.productDraftVersion !== undefined && product.draftVersion !== state.productDraftVersion)) {
+      throw new ContractError("Living Roadmap is not anchored to the current Product revision; reconcile Product meaning before portfolio work.");
     }
   }
 
@@ -281,11 +281,11 @@ export class LivingRoadmapEngine {
       case "reconcile-product": {
         this.requireProductMeaning(operation);
         const product = this.productEngine.loadState(state.workspaceRoot);
-        if (product.phase !== "product-foundation-confirmed") throw new ContractError("Product must be confirmed before Roadmap reconciliation.");
-        if (product.revision === state.productRevision) throw new ContractError("Living Roadmap already matches the current Product revision.");
+        if (product.revision === state.productRevision && product.draftVersion === (state.productDraftVersion ?? product.draftVersion)) throw new ContractError("Living Roadmap already matches the current Product revision.");
         if (product.revision < state.productRevision) throw new ContractError("Living Roadmap cannot reconcile to an older Product revision.");
         state.productRevision = product.revision;
-        return `Reconciled the portfolio with confirmed Product revision ${product.revision} without changing candidates or commitments.`;
+        state.productDraftVersion = product.draftVersion;
+        return `Reconciled the portfolio with current Product revision ${product.revision}, draft ${product.draftVersion}, without changing candidates or commitments.`;
       }
     }
   }

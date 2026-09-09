@@ -43,7 +43,7 @@ A Human and their Host AI can use Loopy to understand a software project, mainta
 | **Demonstrate the result** | Human-guided and AI-operated recorded Demos with inspectable evidence | Accept, reject, or request correction |
 | **Release and publish** | `Release-Plan.md`, `Release-Review.md`, and `Release-Notes.md` for an exact version | Authorize the Release and any explicitly named publication destination and visibility |
 
-A Human participating in the Product responsibility may shape and prioritize Roadmap candidates before technical setup is complete. Product also defines the business outcome and requirements for selected Milestones. A Human participating in Engineering reviews feasibility and defines delivery implications before commitment. One person may hold both responsibilities when they explicitly say so.
+Any Human may contribute to outcome, requirements, priority, feasibility, and delivery implications without being restricted by job title. When a consequential decision is finalized, the participants explicitly state which affected responsibilities they represent. One person may represent several responsibilities.
 
 ## Product contents
 

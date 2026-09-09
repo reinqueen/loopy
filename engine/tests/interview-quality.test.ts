@@ -188,7 +188,8 @@ describe("default Socratic decision-coverage interview correction", () => {
     expect(skill).toContain("An example helps answer the current decision; it must not silently add more requested decisions");
     expect(skill).toContain("Keep responsibility and context authorization as separate decisions");
     expect(skill).toContain("not when every conceivable future branch is exhausted");
-    expect(skill).toContain("Product never supplies Engineering, Architecture, Demo, or Release decisions");
+    expect(skill).toContain("Humans may contribute across lifecycle concerns");
+    expect(skill).toContain("confirm each consequential decision under the responsibility boundary");
     expect(skill).toContain("### Select the move after each response");
     expect(skill).toContain("what was learned or confirmed");
     expect(skill).toContain("what remains materially unclear or unresolved");

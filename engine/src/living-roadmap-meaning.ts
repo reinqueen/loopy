@@ -4,6 +4,7 @@ import type { LivingRoadmapHistoryEntry, LivingRoadmapState } from "./living-roa
 export function livingRoadmapSnapshot(state: LivingRoadmapState): unknown {
   return {
     productRevision: state.productRevision,
+    productDraftVersion: state.productDraftVersion,
     nextCandidateNumber: state.nextCandidateNumber,
     candidates: state.candidates,
     selectedBatches: state.selectedBatches,

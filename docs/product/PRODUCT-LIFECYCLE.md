@@ -80,7 +80,7 @@ Resume is an entry route, not a lifecycle stage. Change is also an entry route a
 
 ## Responsibility-aware participation
 
-Loopy adapts by responsibility, not job title.
+Loopy never restricts participation by job title. Any Human may contribute or help define work at any stage. Responsibility matters only when a consequential decision is finalized, and one Human may explicitly represent several responsibilities.
 
 | Responsibility | Decides |
 |---|---|
@@ -88,12 +88,12 @@ Loopy adapts by responsibility, not job title.
 | **Engineering** | Whether and how: feasibility, technical dependencies, practices, implementation, and proof approach |
 | **Architecture, Demo or quality, Release** | Their specialized decisions only when the work needs them |
 
-- **One responsibility present:** Complete that part and show the next responsibility needed.
+- **One responsibility present:** Continue useful discovery and show any authority still needed before a consequential decision.
 - **One person holds several:** Make each responsibility explicit, avoid repeated questions, and allow combined confirmation.
-- **Several people participate:** Anyone may contribute, but Loopy identifies which responsibility confirms each decision.
+- **Several people participate:** Anyone may contribute anywhere; Loopy identifies decision authority only when finalizing a governed boundary.
 - **A document is supplied:** Check its coverage and ask only about gaps or conflicts; do not force an interview.
 
-Product shapes the business requirements for selected priority candidates, not every Roadmap candidate upfront. Engineering then reviews feasibility and delivery implications before Milestone commitment. A purely technical Milestone may be Engineering-owned unless it changes Product meaning, priority, user behavior, compatibility, or an external promise.
+Humans shape only the requirements needed for the current outcomes, not every Roadmap candidate upfront. Product and Engineering perspectives contribute where useful; neither job title restricts the conversation. Before Milestone commitment, the Humans explicitly represent whichever responsibilities are materially affected by the Definition.
 
 ## Lifecycle layers
 
@@ -125,6 +125,8 @@ Each responsibility owner confirms only their area. One person may combine confi
 
 `Roadmap.md` is the complete Milestone portfolio. It keeps candidates, priorities, dependencies, active work, participants, workspaces, blockers, completed work, and release readiness visible.
 
+Roadmap work may begin directly from a requirement, PRD, notes, repository evidence, or existing candidate. A confirmed Product foundation is useful context but not a gate to useful discovery or Roadmap organization. Project-wide meaning is added to `Project-Definition.md` just in time when it is materially relevant.
+
 `LOOPY.md` is the concise operational view. It shows current work, blockers, Complete-unreleased Milestones, the latest Release, and one next human action.
 
 Candidate creation, grouping, prioritization, selection, and routine pickup need no approval. Product owns outcome priority. Engineering may recommend technical dependencies, enabling work, and delivery sequence without silently changing Product meaning.
@@ -133,7 +135,7 @@ Candidate creation, grouping, prioritization, selection, and routine pickup need
 
 #### Define
 
-Loopy helps Product and Engineering establish the outcome, business requirements, boundaries, non-goals, acceptance, risks, and feasibility. When several candidates are shaped together, shared questions are asked once but each receives its own `Definition.md`.
+Loopy can begin directly from an outcome, feature request, PRD, repository evidence, Roadmap candidate, or existing Definition. It inspects authorized evidence, then interviews the Humans because every source may be stale, wrong, incomplete, or misunderstood. The Humans establish the outcome, requirements, current and intended behavior, boundaries, non-goals, acceptance, risks, and feasibility. When several candidates are shaped together, shared questions are asked once but each receives its own `Definition.md`.
 
 Review and correction need no approval. One bounded commitment decision accepts the exact Milestone outcome and acceptance boundary after the necessary perspectives agree.
 
@@ -223,7 +225,7 @@ Normal participation never requires browsing `.loopy/`. Exact machine state, his
 
 ## Context boundary
 
-The Human controls the context boundary. They may provide information directly or authorize specific files, directories, repositories, links, attachments, issues, designs, or connected systems. A supplied link authorizes that resource, not the surrounding system. Loopy explains why more context would help before asking permission to inspect it. Discovered information remains attributed evidence until the responsible person confirms its current meaning.
+The Human controls the context boundary. They may provide information directly or authorize specific files, directories, repositories, links, attachments, issues, designs, or connected systems. A supplied link authorizes that resource, not the surrounding system. Loopy explains why more context would help before asking permission to inspect it. Inspection improves the interview; it never makes a source authoritative or removes the need for Human clarification. Discovered information remains attributed evidence until the Humans reconcile its current and intended meaning.
 
 ## Pickup and parallel delivery
 
@@ -244,7 +246,7 @@ This is basic team workstream coordination, not autonomous workforce or large mu
 
 Loopy defaults to the calm, Socratic decision-coverage interview defined canonically in the single Loopy skill. It treats current-stage decisions as a dependency-aware tree, asks at most three related questions from the currently answerable frontier, and recomputes that frontier after every answer. It inspects authorized facts itself, exposes material assumptions, grounds recommendations, and stops at sufficient current-stage coverage rather than exhaustively exploring future work.
 
-This is ordinary Loopy behavior, not a mode the Human must request. Stage-specific decision coverage, deferral rules, and responsibility boundaries determine which branches belong now; Product is never asked for Engineering, Architecture, Demo, or Release decisions.
+This is ordinary Loopy behavior, not a mode the Human must request. Stage-specific decision coverage and deferral rules determine which branches belong now. Any Human may contribute at any stage; responsibility is checked only when a governed decision requires authority.
 
 The human can correct Loopy's understanding, defer decisions within their responsibility, pause the interview, and resume from recorded state. A required deferred decision becomes a visible blocker with one next action.
 

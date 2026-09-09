@@ -4,15 +4,21 @@ Use this internal reference when the single Loopy skill recognizes “define thi
 
 ## Establish the bounded Definition
 
-Start only from candidates selected by the Living Roadmap. If the Human names open candidates, invoke the atomic Slice 3 selection first; create no Definition state or folder when selection fails. Inherit confirmed Product and Engineering meaning and authorized evidence. Use the shared Socratic after-response move-selection loop only for gaps, conflicts, or new Definition decisions.
+Start from the Human's actual material: a selected Roadmap candidate, rough outcome, feature request, PRD, notes, repository evidence, or an existing Definition. A selected Roadmap candidate is preferred when one exists, but Product Foundation and Roadmap completion are not prerequisites to useful Definition discovery.
+
+For a direct Definition, inspect authorized evidence, assess coverage and conflicts, conduct only the targeted grill needed for a coherent outcome, and create the minimum Product and Roadmap drafts just in time. Add or reconcile the resulting candidate with the Roadmap without treating that organization as Product confirmation or Milestone commitment. Reuse existing Definition content and prior discovery; do not restart settled questions.
+
+Before writing a Definition candidate, distinguish requirements, observed current behavior, intended behavior, constraints, assumptions, uncertainty, and contradictions. Inspecting those sources does not make them trusted: use them to conduct a targeted Human grill about intent, accuracy, exceptions, and consequences. Material conflicts must identify their sources and reconciliation decision. Use the shared Socratic after-response move-selection loop only for gaps, conflicts, or new Definition decisions.
 
 For each candidate establish the outcome; necessary requirements; in-scope boundary and non-goals; observable acceptance criteria that distinguish acceptance from rejection; dependencies, their existing typed relationship meaning, and whether they affect Definition or later implementation; feasibility and constraints; risks, assumptions, unknowns, and deferrals; and the responsibility perspectives needed for commitment. Preserve inherited required, helpful, and independent meanings unless a responsible participant explicitly changes them; never turn non-blocking or independent context into a required constraint. Do not accept “works correctly” or similarly circular acceptance language.
+
+Keep the Definition outcome-based. Implementation files and tasks may be cited as evidence or feasibility context, but they do not replace a Human-meaningful outcome. Recommend splitting when one Definition contains multiple independently valuable or independently demonstrable outcomes; let the Human accept, rename, split, combine, defer, reject, or return to discovery.
 
 The Host AI explicitly declares whether a Definition is coherent enough to review. Filled fields never allow the Engine to infer semantic completeness; it checks only the declaration and formal invariants.
 
 ## Responsibilities and specialist input
 
-Require Product for Product meaning, people and need, business requirements, Product boundaries or priority consequences, user behavior, compatibility, external promises, and acceptance meaning. Require Engineering for technical outcomes, feasibility, dependencies, delivery constraints, risks, and decisions that may safely wait. Permit genuinely Product-only or Engineering-only Definitions. A technical Definition requires Product when its consequences cross a Product boundary.
+Let every Human collaborate naturally across the Definition. Anyone may contribute and help define context, current or desired behavior, requirements, constraints, risks, scope, dependencies, challenges, and corrections. Do not infer decision authority from job title. At commitment, require agreement from the responsibilities materially affected by the Definition: Product for Product meaning or acceptance consequences, Engineering for technical feasibility or delivery-risk commitments, and other perspectives only when genuinely necessary. One Human may explicitly represent several responsibilities. Permit genuinely single-perspective Definitions.
 
 Architecture, Demo/Quality, or Release input blocks commitment only when its absence prevents a safe, coherent, bounded Definition. Otherwise record the trigger and route it forward just in time. Do not perform those stages here.
 
@@ -24,7 +30,7 @@ Review, receipts, history, readiness, and commitment are per Definition. Require
 
 A Human may commit several explicitly named ready Definitions in one response. Record a distinct commitment and history entry for each. Leave an unready named Definition draft or blocked without preventing other ready named Definitions from committing. Never include an unnamed Definition.
 
-A commitment creates a Planned Milestone and routes to Planning only. It grants no planning approval, implementation, Proof, Demonstration, Release, publication, deployment, workspace, or external-system authority. A committed Definition is authoritative and cannot be silently changed; later material revision belongs to Change Management.
+A commitment creates a Planned Milestone and routes to Planning only. Before commitment, show the exact outcome, scope, exclusions, acceptance boundary, dependencies, material constraints and risks, and unresolved or deferred matters. It grants no planning approval, implementation, Proof, Demonstration, Release, publication, deployment, workspace, or external-system authority. A committed Definition is authoritative and cannot be silently changed; later material revision belongs to Change Management.
 
 ## Internal Engine interface
 

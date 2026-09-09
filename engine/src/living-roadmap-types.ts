@@ -78,6 +78,7 @@ export interface LivingRoadmapState {
   workspaceClass: "human-project";
   workspaceRoot: string;
   productRevision: number;
+  productDraftVersion?: number;
   revision: number;
   nextCandidateNumber: number;
   candidates: LivingRoadmapCandidate[];
@@ -112,7 +113,8 @@ export type RoadmapOperation = Actor & (
 export interface LivingRoadmapContract {
   version: 1;
   id: "living-roadmap-management";
-  required_product_phase: "product-foundation-confirmed";
+  allowed_product_phases: ["draft", "blocked", "ready-for-product-confirmation", "product-foundation-confirmed"];
+  product_confirmation_required_for_roadmap_work: false;
   generated_artifacts: ["LOOPY.md", "docs/loopy/Roadmap.md"];
   priority_order: RoadmapPriority[];
   candidate_states: CandidateState[];

@@ -4,7 +4,11 @@ This is internal Host-AI guidance. Never show Definition identities, JSON, or En
 
 Use `definition-status` to map human-readable Milestone names to stable internal identities.
 
+- `definition-init` without input continues selected Roadmap candidates. With a closed direct-start input it creates only the minimum missing Product and Roadmap drafts, adds and selects one explicitly intended candidate, and begins its Definition without confirming Product or committing the Milestone. The input names `projectName`, `participantResponsibilities`, `title`, `outcome`, `priority`, `rationale`, `nextShapingStep`, and an attributed Product actor (or Loopy with an explicit Product-intent basis).
+
 - `definition-apply` accepts one closed `update` object naming a Definition, an actor with explicitly represented perspectives, and any changed `content`, Host `coherence` declaration, `requiredPerspectives`, or `specialistInputs`. It always persists canonical state. Ordinary incomplete updates do not publish Markdown; reaching review readiness or a blocking state does.
+
+Definition content may distinguish `currentBehavior`, `intendedBehavior`, attributed `evidence`, and `reconciliations`. Evidence kinds are Product intent, Engineering intent, code, test, configuration, documentation, prior artifact, or inference. A material unresolved reconciliation blocks review and commitment; a resolved reconciliation records the decision and source disagreement without erasing either source.
 - `definition-review` accepts a JSON array of distinct Definition identities. Review is rejected unless the Host has declared coherence and the formal outcome, requirement, and acceptance boundary exist.
 - `definition-confirm` accepts an array of explicitly named requests with `definitionId`, `participant`, `perspectives`, and `commit`. Use `commit: true` when the response clearly confirms and commits. Each ready Definition commits independently; an unready named Definition remains unchanged and does not block another ready named Definition.
 

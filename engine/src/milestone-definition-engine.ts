@@ -7,9 +7,10 @@ import { validateEngineeringState } from "./engineering-contract.js";
 import { validateLivingRoadmapState } from "./living-roadmap-contract.js";
 import { LivingRoadmapEngine } from "./living-roadmap-engine.js";
 import { definitionHistoryHash, definitionSnapshotHash } from "./milestone-definition-meaning.js";
-import { formalDefinitionGaps, loadMilestoneDefinitionContract, validateDefinitionUpdate, validateMilestoneDefinitionState } from "./milestone-definition-contract.js";
+import { formalDefinitionGaps, loadMilestoneDefinitionContract, validateDefinitionUpdate, validateDirectDefinitionStart, validateMilestoneDefinitionState } from "./milestone-definition-contract.js";
 import type {
   DefinitionCommitRequest,
+  DirectDefinitionStart,
   DefinitionHistoryEntry,
   DefinitionPerspective,
   DefinitionUpdate,
@@ -18,7 +19,7 @@ import type {
   MilestoneDefinitionContract,
   MilestoneDefinitionState,
 } from "./milestone-definition-types.js";
-import { LIVING_ROADMAP_STATE_PATH, MILESTONE_DEFINITION_STATE_PATH, loadChangeManagementStateIfPresent, renderProjectViews, writeProjectViews } from "./project-views.js";
+import { LIVING_ROADMAP_STATE_PATH, MILESTONE_DEFINITION_STATE_PATH, PRODUCT_STATE_PATH, loadChangeManagementStateIfPresent, renderProjectViews, writeProjectViews } from "./project-views.js";
 import { canonicalWorkspaceRoot, resolveInsideWorkspace, sha256, type FileSetWriteHooks, WorkspaceError, writeFileSetInsideWorkspace } from "./workspace.js";
 
 function clone<T>(value: T): T { return structuredClone(value); }
@@ -78,7 +79,7 @@ export class MilestoneDefinitionEngine {
         selectedBatchVersion: batch.version, order: index, artifactPath: `docs/loopy/milestones/${readable}/Definition.md`,
         phase: "draft", revision: 0, reviewedRevision: null, coherence: { status: "draft", basis: "" },
         content: {
-          outcome: candidate.outcome, requirements: [], inScope: [], nonGoals: [], acceptance: [],
+          outcome: candidate.outcome, requirements: [], currentBehavior: [], intendedBehavior: [], evidence: [], reconciliations: [], inScope: [], nonGoals: [], acceptance: [],
           dependencies: candidate.dependencies.map((item) => ({
             name: item.candidateId ? roadmap.candidates.find((candidateItem) => candidateItem.id === item.candidateId)?.title ?? "Roadmap dependency" : item.external!,
             kind: item.kind, consequence: item.boundary, note: item.note,
@@ -91,12 +92,35 @@ export class MilestoneDefinitionEngine {
     const engineering = this.productEngine.loadEngineeringStateIfPresent(root);
     const state: MilestoneDefinitionState = {
       schemaVersion: 1, stage: "milestone-definition", workspaceClass: "human-project", workspaceRoot: root,
-      productRevision: product.revision, engineeringRevision: engineering?.revision ?? null, roadmapRevision: roadmap.revision,
+      productRevision: product.revision, productDraftVersion: product.draftVersion, engineeringRevision: engineering?.revision ?? null, roadmapRevision: roadmap.revision,
       revision: 0, definitions, nextActions: [], session: { status: "active", resumeAction: null }, generatedViews: {},
     };
     state.nextActions = [this.route(state)];
     this.write(root, state);
     return clone(state);
+  }
+
+  async initializeDirect(workspaceRoot: string, input: DirectDefinitionStart): Promise<MilestoneDefinitionState> {
+    validateDirectDefinitionStart(input);
+    const root = canonicalWorkspaceRoot(workspaceRoot);
+    if (existsSync(resolveInsideWorkspace(root, MILESTONE_DEFINITION_STATE_PATH))) {
+      throw new ContractError("Milestone Definition already exists. Reuse its current state instead of starting direct discovery again.");
+    }
+    if (!existsSync(resolveInsideWorkspace(root, PRODUCT_STATE_PATH))) {
+      await this.productEngine.initialize(root, input.projectName, { participantResponsibilities: input.participantResponsibilities });
+    }
+    if (!existsSync(resolveInsideWorkspace(root, LIVING_ROADMAP_STATE_PATH))) this.roadmapEngine.initialize(root);
+    const roadmap = this.roadmapEngine.loadState(root);
+    const operation = {
+      type: "add" as const,
+      candidate: { title: input.title, outcome: input.outcome, priority: input.priority, rationale: input.rationale, nextShapingStep: input.nextShapingStep },
+      actor: input.actor,
+    };
+    const added = this.roadmapEngine.applyOperation(root, operation);
+    const candidate = added.candidates.find((item) => item.title === input.title && item.outcome === input.outcome && item.state === "Open");
+    if (!candidate) throw new ContractError("Direct Definition could not identify its newly created Roadmap candidate.");
+    this.roadmapEngine.applyOperation(root, { type: "select", candidateIds: [candidate.id], actor: input.actor });
+    return this.initialize(root);
   }
 
   loadState(workspaceRoot: string): MilestoneDefinitionState {
@@ -228,7 +252,7 @@ export class MilestoneDefinitionEngine {
   }
   private assertAnchors(workspaceRoot: string, state: MilestoneDefinitionState): void {
     const product = this.productEngine.loadState(workspaceRoot); const roadmap = this.roadmapEngine.loadState(workspaceRoot);
-    if (product.revision !== state.productRevision) throw new ContractError("Milestone Definitions are not anchored to the current confirmed Product foundation.");
+    if (product.revision !== state.productRevision || (state.productDraftVersion !== undefined && product.draftVersion !== state.productDraftVersion)) throw new ContractError("Milestone Definitions are not anchored to the current Product state.");
     for (const definition of state.definitions) {
       const candidate = roadmap.candidates.find((item) => item.id === definition.sourceCandidateId);
       if (!candidate || candidate.state !== "Selected for definition") throw new ContractError("Milestone Definition source selection is no longer valid.");
@@ -238,7 +262,7 @@ export class MilestoneDefinitionEngine {
   }
   private rephase(definition: MilestoneDefinition): void {
     if (definition.phase === "committed") return;
-    if (definition.coherence.status === "blocked" || definition.content.unknowns.some((item) => item.blocking) || definition.specialistInputs.some((item) => item.mode === "blocking" && item.status === "needed")) definition.phase = "blocked";
+    if (definition.coherence.status === "blocked" || definition.content.unknowns.some((item) => item.blocking) || (definition.content.reconciliations ?? []).some((item) => item.material && item.status === "unresolved") || definition.specialistInputs.some((item) => item.mode === "blocking" && item.status === "needed")) definition.phase = "blocked";
     else if (!this.commitmentGap(definition)) definition.phase = "ready-for-commitment";
     else definition.phase = "draft";
   }

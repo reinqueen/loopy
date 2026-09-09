@@ -6,10 +6,10 @@
 
 | Stage | What Loopy helps you accomplish | Main documents |
 |---|---|---|
-| **Start or Adopt** | Establish the project's direction and possible outcomes | `Project-Definition.md`, `Roadmap.md` |
+| **Start or Adopt** | Establish the project's direction and possible outcomes from supplied or authorized evidence | `Project-Definition.md`, `Roadmap.md` |
 | **Engineering Foundation** | Establish the shared technical guidance currently needed | `Engineering-Guide.md` |
 | **Living Roadmap** | Organize, prioritize, and select possible outcomes | `Roadmap.md` |
-| **Define** | Turn a selected outcome into a bounded Milestone | `Definition.md` |
+| **Define** | Turn a selected or directly supplied outcome into a bounded Milestone | `Definition.md` |
 | **Plan** | Divide the Milestone into understandable, ordered Work Units | `Plan.md` |
 | **Build and Prove** | Implement authorized work and independently evaluate the exact result | `Proof.md` |
 | **Demonstrate and Accept** | Show the outcome clearly so a human can judge it | `Demo.md` |
@@ -33,7 +33,7 @@ Use this when starting a new project, bringing Loopy into an existing project, o
 
 ### What the human contributes
 
-The human supplies or corrects Product direction, chooses the authorized context, and decides whether the Product foundation is accurate enough to confirm.
+Humans supply or correct Product direction, choose the authorized context, and decide whether the Product foundation is accurate enough to confirm. Anyone may contribute; Loopy checks decision authority only at the confirmation boundary.
 
 ### Documents produced
 
@@ -122,7 +122,7 @@ What is active, blocked, or ready next on the Roadmap?
 
 ### When to use it
 
-Use this when one or more selected Roadmap candidates need a clear delivery commitment.
+Use this when one or more selected Roadmap candidates—or a directly supplied outcome—need a clear delivery commitment. A completed Product Foundation or existing Roadmap is not required before useful Definition discovery.
 
 ### What Loopy does
 

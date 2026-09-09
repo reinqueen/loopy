@@ -220,7 +220,7 @@ export function writeProjectViews(input: {
   const discoveredPlanning = input.milestonePlanning ?? loadMilestonePlanningStateIfPresent(root);
   if (discoveredPlanning && discoveredPlanning.workspaceRoot !== root) throw new WorkspaceError("Milestone Planning state does not belong to the target workspace.");
   if (milestoneDefinition && milestoneDefinition.workspaceRoot !== root) throw new WorkspaceError("Milestone Definition state does not belong to the target workspace.");
-  if (milestoneDefinition && milestoneDefinition.productRevision !== input.product.revision) {
+  if (milestoneDefinition && (milestoneDefinition.productRevision !== input.product.revision || (milestoneDefinition.productDraftVersion !== undefined && milestoneDefinition.productDraftVersion !== input.product.draftVersion))) {
     throw new ContractError("Milestone Definitions cannot be rendered against a different Product revision; a material change requires the later Change Management route.");
   }
   if (milestoneDefinition && (!input.livingRoadmap || milestoneDefinition.definitions.some((definition) =>

@@ -2,6 +2,8 @@
 
 Use this internal reference when the single Loopy skill recognizes a request to start or understand a project. Never expose this route as a separate skill or command.
 
+Product Start is one useful entry route, not a ceremony that must precede every other route. If the Human arrives with a feature request, existing Roadmap candidate, Milestone Definition, or bounded brownfield change, route directly to useful discovery and create or refresh Product artifacts only when project-wide meaning is materially affected.
+
 ## Begin with permission and responsibility
 
 Identify the target project, the Human's goal, and the responsibilities they explicitly represent. Selecting a project does not authorize reading its repository.
@@ -14,7 +16,7 @@ Starting is sufficient to initialize readable drafts. If Product is not represen
 
 ## Product boundary
 
-Ask Product only about purpose, people and need, outcome, evidence versus current intent, boundaries, success, Roadmap state, and uncertainty. Do not ask Product to decide Engineering, Architecture, Demo or quality, Release, publication, deployment, or rollback matters.
+Any Human may help define purpose, people and need, outcome, boundaries, success, priority, evidence, constraints, risks, or technical context. Do not infer authority from a PM, Technical Lead, or other job title. When a consequential Product decision is finalized, record that the Human explicitly represents Product responsibility for that decision. The same Human may also represent other responsibilities when they say so; do not make that person repeat settled meaning.
 
 Keep Product direction and the Roadmap distinct. **Product direction or vision** is the enduring destination or change and belongs in `Project-Definition.md`. **Roadmap candidates** are distinct possible outcome steps toward that direction and belong in `Roadmap.md`. Never use these ideas as synonyms, and do not create a separate Vision artifact.
 
@@ -24,7 +26,11 @@ Apply the skill's canonical question-frontier mechanics to Product decision cove
 
 When supplied or authorized context reveals a complex or unfamiliar domain, adaptively ask Product to explain the relevant concepts and terms, current workflow and decisions, evidence sources and their reliability, dependencies and edge cases, and the consequences of being wrong. Ask only enough to understand Product meaning and shape possible outcomes. Do not turn Product Start into exhaustive requirements gathering or Engineering discovery.
 
+For authorized brownfield work, inspect relevant code, tests, configuration, documentation, prior Loopy artifacts, and supplied requirements before interviewing the Humans. Do not ask them merely to retrieve discoverable facts, but do ask them to verify interpretations, identify stale or wrong evidence, explain exceptions, supply intent, and resolve consequences. Continue probing until the meaning required for the current outcome is reliable enough—or visibly blocked. Summarize material source agreement and disagreement. Never infer that code, tests, documentation, Product expectation, or Engineering recollection represents intended behavior merely because it exists.
+
 Treat domain statements as the participant's current knowledge or intent unless independently attributed as evidence. Reflect unfamiliar language back plainly and invite correction before relying on it.
+
+When Human interpretations differ, present the differing meanings and consequences without calling either contribution a role violation. Help them reconcile current behavior, desired behavior, and the Milestone boundary; preserve attribution only where it helps the decision or evidence record.
 
 After each Product response, apply the skill's canonical move-selection loop before changing coverage. In a greenfield project, current human intent and supplied context normally provide most of the available basis; keep intent distinct from attributed evidence. In a brownfield project, after explicit authorization, inspect discoverable facts before asking the person to supply them. Ask Product mainly for intent, judgment, correction, choices, and knowledge unavailable from authorized context.
 
@@ -37,6 +43,8 @@ When the conversation suggests independently valuable outcomes, different horizo
 Do not mechanically create one candidate per component, activity, or sentence, and do not force several candidates when one coherent outcome is appropriate. A single candidate must be an explicit, reviewable grouping rather than accidental compression. No fixed candidate count applies, and candidates need not all be fully defined.
 
 Before readiness, compare the Roadmap with the distinct outcomes implied by the conversation. Ask whether anything valuable, later-horizon, dependency-enabling, or independently decidable has been hidden inside another candidate, and whether Product agrees with the proposed grouping.
+
+When requirements discovery reveals multiple outcomes, dependencies, competing priorities, or an initiative too large to judge as one result, recommend Roadmap organization and explain why. The recommendation is not a gate: if Product declines, continue unrelated work unless a genuine decision is missing.
 
 ## Apply Product decision coverage
 

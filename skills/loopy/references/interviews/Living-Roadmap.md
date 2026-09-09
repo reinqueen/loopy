@@ -4,19 +4,25 @@ Use this internal reference when the single Loopy skill recognizes a request to 
 
 ## Understand the request
 
-Read canonical Loopy state and synchronized human views. Apply the skill's canonical question-frontier mechanics only to Roadmap decisions: unresolved outcome meaning and prerequisite dependencies precede downstream selection or disposition questions that rely on them. Ask about ambiguous outcome meaning, priority, dependency consequences, disposition, or represented responsibility, and reflect consequential interpretations before acting. A person's job title does not grant a responsibility; record the responsibility they explicitly represent.
+Begin from the available authorized context and any canonical Loopy state or synchronized human views that already exist. Product confirmation is useful inherited context, not a prerequisite to discovering candidate outcomes or organizing a working Roadmap. Create or refresh the minimum earlier drafts just in time when durable project-wide meaning is needed.
+
+Apply the skill's canonical question-frontier mechanics only to Roadmap decisions: unresolved outcome meaning and prerequisite dependencies precede downstream selection or disposition questions that rely on them. Ask about ambiguous outcome meaning, priority, dependency consequences, disposition, or represented responsibility, and reflect consequential interpretations before acting. A person's job title does not grant a responsibility; record the responsibility they explicitly represent.
 
 Recognize ordinary requests to add, rename, combine, split, prioritize, defer, cancel, supersede, select, pause, or resume candidates. Keep the conversation summary-first and provide host-appropriate links or exact paths to `LOOPY.md` and `docs/loopy/Roadmap.md`.
 
 ## Preserve Product and Engineering boundaries
 
-Routine portfolio operations require no approval. Product controls outcome meaning and priority. Engineering may recommend feasibility dependencies and sequencing without changing Product priority. Loopy may perform clear routine organization from supplied Product intent, but must stop when it would choose between competing Product outcomes or alter accepted meaning.
+Routine portfolio operations require no approval. Any Human may discuss and help define value, feasibility, dependencies, risk, sequencing, and priority. Final Product priority requires a Human explicitly representing Product responsibility for that decision; technical evidence or recommendations do not silently become Product priority. Loopy may perform clear routine organization from supplied intent, but must stop when it would choose between competing Product outcomes or alter accepted meaning.
 
 Group candidates by coherent outcome. Never produce one candidate per component, repository, service, screen, or technical task merely because those parts exist.
 
+Before proposing candidates, use inspected evidence to grill the Humans on material gaps, stale or questionable context, intended behavior, exceptions, and consequences. Then present a concise correctable synthesis of the outcome, discovered requirements, observed and intended behavior, constraints, non-goals, assumptions, and material conflicts. Requirements remain conversational and structured state until they become Roadmap outcome meaning or a selected Definition; do not create `Requirements.md`.
+
 ## Dependencies and selection
 
-Classify each known relationship as **required before**, **helpful and non-blocking**, or **independent and potentially parallel**. State whether a required-before relationship blocks Definition or only later implementation. Do not force a relationship for every pair.
+Classify each sufficiently supported relationship as **required before**, **helpful and non-blocking**, **sequencing recommendation**, or **independent and potentially parallel**. State whether a required-before relationship blocks Definition or only later implementation. Do not force a relationship for every pair, manufacture sequence, or turn an unsupported effort guess into priority.
+
+Recommend priority using stated value, urgency, commitments, enabling value, risk reduction, learning value, and sufficiently supported effort or complexity. Explain the basis and keep final Product priority with the Human. If Product chooses differently, preserve the Human decision without arguing or silently restoring the recommendation.
 
 Treat the Roadmap relationship summary as a portfolio view, not execution authority. Its quick view shows required order, explicitly independent work as **Potentially parallel**, and unresolved or conflicting meaning as **Needs coordination**; helpful relationships remain in the detailed candidate data. Never describe Roadmap independence as safe concurrent implementation.
 
@@ -36,7 +42,7 @@ Resolve the package root containing `skills/loopy/`, `engine/`, and `templates`.
 
 `<node-executable> <package-root>/runtime/dist/engine/src/cli.js <command> --source-root <package-root> --workspace <target-project> [operation-specific flags]`
 
-- `roadmap-init` imports the confirmed Product Roadmap without committing candidates.
+- `roadmap-init` imports the current Product Roadmap without committing candidates. It may initialize against a current draft when useful Roadmap work can proceed safely; commitment boundaries remain separate.
 - `roadmap-apply --input <json-file>` performs one validated routine operation.
 - `roadmap-interrupt --resume-action <action>` and `roadmap-resume` preserve continuity.
 - `roadmap-render`, `roadmap-stale`, and `roadmap-status` refresh or inspect state.

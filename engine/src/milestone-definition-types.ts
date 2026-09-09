@@ -32,6 +32,10 @@ export interface SpecialistInput {
 export interface DefinitionContent {
   outcome: string;
   requirements: string[];
+  currentBehavior: string[];
+  intendedBehavior: string[];
+  evidence: DefinitionEvidence[];
+  reconciliations: DefinitionReconciliation[];
   inScope: string[];
   nonGoals: string[];
   acceptance: string[];
@@ -40,6 +44,31 @@ export interface DefinitionContent {
   risks: string[];
   assumptions: string[];
   unknowns: DefinitionUnknown[];
+}
+
+export interface DefinitionEvidence {
+  source: string;
+  kind: "product-intent" | "engineering-intent" | "code" | "test" | "configuration" | "documentation" | "prior-artifact" | "inference";
+  finding: string;
+}
+
+export interface DefinitionReconciliation {
+  disagreement: string;
+  sources: string[];
+  status: "resolved" | "unresolved";
+  resolution: string;
+  material: boolean;
+}
+
+export interface DirectDefinitionStart {
+  projectName: string;
+  participantResponsibilities: string[];
+  title: string;
+  outcome: string;
+  priority: "Highest" | "High" | "Medium" | "Later";
+  rationale: string;
+  nextShapingStep: string;
+  actor: { name: string; responsibility: "product" | "loopy"; intentBasis?: string };
 }
 
 export interface DefinitionReceipt {
@@ -83,6 +112,7 @@ export interface MilestoneDefinitionState {
   workspaceClass: "human-project";
   workspaceRoot: string;
   productRevision: number;
+  productDraftVersion?: number;
   engineeringRevision: number | null;
   roadmapRevision: number;
   revision: number;
@@ -113,6 +143,8 @@ export interface MilestoneDefinitionContract {
   version: 1;
   id: "milestone-definition";
   source_candidate_state: "Selected for definition";
+  direct_entry_bootstraps_existing_state: true;
+  product_confirmation_required_for_definition_drafting: false;
   authoritative_delivery_boundary: true;
   semantic_coherence_owned_by_host_ai: true;
   independent_definition_commitment: true;

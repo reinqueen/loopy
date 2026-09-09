@@ -273,7 +273,7 @@ describe("Milestone Definition", () => {
     expect(skill).toContain("references/interviews/Milestone-Definition.md");
     expect(reference).toContain("Never expose this route as a separate skill or command");
     expect(reference).toContain("Filled fields never allow the Engine to infer semantic completeness");
-    expect(reference).toContain("technical Definition requires Product");
+    expect(reference).toContain("Do not infer decision authority from job title");
     expect(reference).toContain("ordinary `definition-apply` may advance canonical state without publishing Markdown");
     expect(reference).toContain("when the Definition reaches review readiness, when the Human asks to see it, when work is paused or blocked");
     expect(reference).toContain("Published views identify the exact state revision they represent");

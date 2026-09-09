@@ -25,7 +25,7 @@ capabilities:
     lifecycle_entry: loopy
     exposure: internal-route
     status: implemented-unverified
-    description: Loopy organizes the uncommitted portfolio and atomically routes eligible candidates to Milestone Definition without granting implementation authority.
+    description: Loopy organizes an uncommitted outcome portfolio from confirmed or in-progress project meaning and routes eligible candidates to Milestone Definition without granting implementation authority.
     human_artifacts:
       - LOOPY.md
       - docs/loopy/Roadmap.md
@@ -34,7 +34,7 @@ capabilities:
     lifecycle_entry: loopy
     exposure: internal-route
     status: implemented-unverified
-    description: Loopy creates independently reviewable Definitions from selected candidates and commits each ready, explicitly named boundary as a Planned Milestone without implementation authority.
+    description: Loopy creates independently reviewable Definitions from selected candidates or direct outcome requests, preserves attributed brownfield evidence and reconciliation, and commits each ready explicitly named boundary without implementation authority.
     human_artifacts:
       - LOOPY.md
       - docs/loopy/Roadmap.md

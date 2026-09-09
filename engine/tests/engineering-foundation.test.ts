@@ -594,8 +594,8 @@ describe("Establish project guide — Engineering foundation", () => {
 
   it("keeps the Engineering interview guidance active and the greenfield walkthrough answer-free", () => {
     const guidance = readFileSync(join(sourceRoot, "skills/loopy/references/interviews/Engineering-Foundation.md"), "utf8");
-    expect(guidance).toContain("Authorized evidence seeds the conversation; it does not replace active Engineering participation.");
-    expect(guidance).toContain("first ask what the Engineering participant knows or intends");
+    expect(guidance).toContain("Authorized evidence seeds the conversation; it does not replace active Human participation.");
+    expect(guidance).toContain("first ask what the participants know or intend");
     expect(guidance).toContain("Label each recommendation as a **hypothesis**");
     expect(guidance).toContain("accept, change, reject, or defer each meaningful recommendation");
     expect(guidance).toContain("Should the Engineering Guide record follow-up work for Architecture, Demo/Quality, or Release?");

@@ -12,6 +12,14 @@
 
 {{requirements}}
 
+## Current and Intended Behavior
+
+{{behavior}}
+
+## Evidence and Reconciliation
+
+{{evidenceAndReconciliation}}
+
 ## In Scope
 
 {{inScope}}

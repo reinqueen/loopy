@@ -8,6 +8,7 @@ import {
   DEFINITION_PHASES,
   SPECIALIST_MODES,
   type DefinitionContent,
+  type DirectDefinitionStart,
   type DefinitionPerspective,
   type DefinitionUpdate,
   type MilestoneDefinition,
@@ -42,11 +43,12 @@ function perspectives(value: unknown, label: string, allowEmpty = false): assert
 export async function loadMilestoneDefinitionContract(path: string): Promise<MilestoneDefinitionContract> {
   const value = parse(await readFile(path, "utf8")) as unknown;
   object(value, "Milestone Definition contract");
-  keys(value, ["version", "id", "source_candidate_state", "authoritative_delivery_boundary", "semantic_coherence_owned_by_host_ai",
+  keys(value, ["version", "id", "source_candidate_state", "direct_entry_bootstraps_existing_state", "product_confirmation_required_for_definition_drafting", "authoritative_delivery_boundary", "semantic_coherence_owned_by_host_ai",
     "independent_definition_commitment", "same_revision_receipts", "exactly_one_next_action", "append_only_hash_linked_history",
     "rejected_operations_do_not_mutate", "ordinary_updates_may_defer_publication", "published_revision_metadata_required",
     "inherited_dependency_kinds_preserved", "later_stages_out_of_scope"], "Milestone Definition contract");
   if (value.version !== 1 || value.id !== "milestone-definition" || value.source_candidate_state !== "Selected for definition" ||
+      value.direct_entry_bootstraps_existing_state !== true || value.product_confirmation_required_for_definition_drafting !== false ||
       value.authoritative_delivery_boundary !== true || value.semantic_coherence_owned_by_host_ai !== true ||
       value.independent_definition_commitment !== true || value.same_revision_receipts !== true ||
       value.exactly_one_next_action !== true || value.append_only_hash_linked_history !== true ||
@@ -60,13 +62,35 @@ export async function loadMilestoneDefinitionContract(path: string): Promise<Mil
 
 function content(value: unknown, label: string, partial = false): asserts value is DefinitionContent {
   object(value, label);
-  const allowed = ["outcome", "requirements", "inScope", "nonGoals", "acceptance", "dependencies", "feasibilityAndConstraints", "risks", "assumptions", "unknowns"];
+  const allowed = ["outcome", "requirements", "currentBehavior", "intendedBehavior", "evidence", "reconciliations", "inScope", "nonGoals", "acceptance", "dependencies", "feasibilityAndConstraints", "risks", "assumptions", "unknowns"];
   keys(value, allowed, label);
   if (!partial || value.outcome !== undefined) {
     if (partial && value.outcome === "") { /* clearing a draft field is permitted */ } else text(value.outcome, `${label}.outcome`);
   }
   for (const field of ["requirements", "inScope", "nonGoals", "acceptance", "feasibilityAndConstraints", "risks", "assumptions"] as const) {
     if (!partial || value[field] !== undefined) texts(value[field], `${label}.${field}`);
+  }
+  for (const field of ["currentBehavior", "intendedBehavior"] as const) {
+    if (value[field] !== undefined) texts(value[field], `${label}.${field}`);
+  }
+  if (value.evidence !== undefined) {
+    if (!Array.isArray(value.evidence)) throw new ContractError(`${label}.evidence must be an array.`);
+    value.evidence.forEach((item: unknown, index: number) => {
+      object(item, `${label}.evidence[${index}]`); keys(item, ["source", "kind", "finding"], `${label}.evidence[${index}]`);
+      text(item.source, `${label}.evidence[${index}].source`); text(item.finding, `${label}.evidence[${index}].finding`);
+      enumeration(item.kind, ["product-intent", "engineering-intent", "code", "test", "configuration", "documentation", "prior-artifact", "inference"], `${label}.evidence[${index}].kind`);
+    });
+  }
+  if (value.reconciliations !== undefined) {
+    if (!Array.isArray(value.reconciliations)) throw new ContractError(`${label}.reconciliations must be an array.`);
+    value.reconciliations.forEach((item: unknown, index: number) => {
+      object(item, `${label}.reconciliations[${index}]`); keys(item, ["disagreement", "sources", "status", "resolution", "material"], `${label}.reconciliations[${index}]`);
+      text(item.disagreement, `${label}.reconciliations[${index}].disagreement`); texts(item.sources, `${label}.reconciliations[${index}].sources`);
+      enumeration(item.status, ["resolved", "unresolved"], `${label}.reconciliations[${index}].status`);
+      if (typeof item.resolution !== "string") throw new ContractError(`${label}.reconciliations[${index}].resolution must be a string.`);
+      if (item.status === "resolved") text(item.resolution, `${label}.reconciliations[${index}].resolution`);
+      if (typeof item.material !== "boolean") throw new ContractError(`${label}.reconciliations[${index}].material must be boolean.`);
+    });
   }
   if (!partial || value.dependencies !== undefined) {
     if (!Array.isArray(value.dependencies)) throw new ContractError(`${label}.dependencies must be an array.`);
@@ -137,10 +161,11 @@ function definition(value: unknown, label: string): asserts value is MilestoneDe
 
 export function validateMilestoneDefinitionState(value: unknown): asserts value is MilestoneDefinitionState {
   object(value, "Milestone Definition state");
-  keys(value, ["schemaVersion", "stage", "workspaceClass", "workspaceRoot", "productRevision", "engineeringRevision", "roadmapRevision", "revision", "definitions", "nextActions", "session", "generatedViews"], "Milestone Definition state");
+  keys(value, ["schemaVersion", "stage", "workspaceClass", "workspaceRoot", "productRevision", "productDraftVersion", "engineeringRevision", "roadmapRevision", "revision", "definitions", "nextActions", "session", "generatedViews"], "Milestone Definition state");
   if (value.schemaVersion !== 1 || value.stage !== "milestone-definition" || value.workspaceClass !== "human-project") throw new ContractError("Milestone Definition state has an invalid schema or workspace class.");
   text(value.workspaceRoot, "workspaceRoot");
   for (const field of ["productRevision", "roadmapRevision", "revision"] as const) if (!Number.isInteger(value[field]) || value[field] < 0) throw new ContractError(`${field} is invalid.`);
+  if (value.productDraftVersion !== undefined && (!Number.isInteger(value.productDraftVersion) || value.productDraftVersion < 0)) throw new ContractError("productDraftVersion is invalid.");
   if (value.engineeringRevision !== null && (!Number.isInteger(value.engineeringRevision) || value.engineeringRevision < 0)) throw new ContractError("engineeringRevision is invalid.");
   if (!Array.isArray(value.definitions) || value.definitions.length === 0) throw new ContractError("At least one Definition is required.");
   value.definitions.forEach((item, index) => definition(item, `definitions[${index}]`));
@@ -172,6 +197,20 @@ export function validateDefinitionUpdate(value: unknown): asserts value is Defin
   if (value.content === undefined && value.coherence === undefined && value.requiredPerspectives === undefined && value.specialistInputs === undefined) throw new ContractError("Definition update must change at least one field.");
 }
 
+export function validateDirectDefinitionStart(value: unknown): asserts value is DirectDefinitionStart {
+  object(value, "Direct Definition start");
+  keys(value, ["projectName", "participantResponsibilities", "title", "outcome", "priority", "rationale", "nextShapingStep", "actor"], "Direct Definition start");
+  for (const field of ["projectName", "title", "outcome", "rationale", "nextShapingStep"] as const) text(value[field], `Direct Definition start.${field}`);
+  texts(value.participantResponsibilities, "Direct Definition start.participantResponsibilities");
+  enumeration(value.priority, ["Highest", "High", "Medium", "Later"], "Direct Definition start.priority");
+  object(value.actor, "Direct Definition start.actor");
+  keys(value.actor, ["name", "responsibility", "intentBasis"], "Direct Definition start.actor");
+  text(value.actor.name, "Direct Definition start.actor.name");
+  enumeration(value.actor.responsibility, ["product", "loopy"], "Direct Definition start.actor.responsibility");
+  if (value.actor.intentBasis !== undefined) text(value.actor.intentBasis, "Direct Definition start.actor.intentBasis");
+  if (value.actor.responsibility === "loopy" && !value.actor.intentBasis) throw new ContractError("Direct Definition start by Loopy requires a basis in explicit Product intent.");
+}
+
 export function formalDefinitionGaps(definition: MilestoneDefinition): string[] {
   const gaps: string[] = [];
   if (!definition.content.outcome.trim()) gaps.push("outcome");
@@ -179,6 +218,7 @@ export function formalDefinitionGaps(definition: MilestoneDefinition): string[] 
   if (!definition.content.acceptance.length) gaps.push("observable acceptance boundary");
   if (definition.coherence.status !== "coherent") gaps.push("Host-AI coherence assessment");
   if (definition.content.unknowns.some((item) => item.blocking)) gaps.push("blocking unknown");
+  if ((definition.content.reconciliations ?? []).some((item) => item.material && item.status === "unresolved")) gaps.push("material unresolved evidence conflict");
   if (definition.specialistInputs.some((item) => item.mode === "blocking" && item.status === "needed")) gaps.push("blocking specialist input");
   return gaps;
 }

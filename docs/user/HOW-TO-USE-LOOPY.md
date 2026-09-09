@@ -21,6 +21,8 @@ It can:
 
 Loopy keeps the human in control of direction and judgment without asking them to manage every implementation step.
 
+You may start from a rough requirement, feature request, PRD, notes, repository, Roadmap candidate, existing Definition, or a mixture. Loopy does not require unrelated earlier stages before it can help. It creates or updates project-wide artifacts just in time when their meaning is actually needed.
+
 For detailed behavior, human participation, documents, and stopping boundaries at every stage, see [What Loopy Can Do](WHAT-LOOPY-CAN-DO.md).
 
 ## What Loopy does not do
@@ -91,6 +93,10 @@ Outcome Accepted
 | **Demonstrate and Accept** | The outcome is shown in a human-understandable way. A human accepts it, requests correction, or defers judgment. |
 
 Roadmap management, change intake, status, pause, and resume remain available throughout the lifecycle. Several Milestones may progress independently when their dependencies and workspaces permit it.
+
+In an existing project, Loopy inspects only the context you authorize. It then interviews the Humans because code, tests, configuration, documentation, prior artifacts, and Human recollection may all be incomplete or wrong. Inspection supplies better questions; it does not supply unquestioned truth.
+
+Anyone may contribute or help define work at any stage. Loopy does not use PM, Technical Lead, or another job title as a conversational permission. It asks which responsibility a Human represents only when a consequential decision—such as final priority, Milestone commitment, acceptance, material change, or release—needs that authority.
 
 ## Start Loopy
 

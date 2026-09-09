@@ -113,7 +113,7 @@ const COMMAND_OPTIONS: Record<CliCommand, { required: string[]; optional: string
   "roadmap-resume": { required: ["--workspace"], optional: ["--source-root"] },
   "roadmap-stale": { required: ["--workspace"], optional: ["--source-root"] },
   "roadmap-status": { required: ["--workspace"], optional: ["--source-root"] },
-  "definition-init": { required: ["--workspace"], optional: ["--source-root"] },
+  "definition-init": { required: ["--workspace"], optional: ["--source-root", "--input"] },
   "definition-apply": { required: ["--workspace", "--input"], optional: ["--source-root"] },
   "definition-review": { required: ["--workspace", "--input"], optional: ["--source-root"] },
   "definition-confirm": { required: ["--workspace", "--input"], optional: ["--source-root"] },

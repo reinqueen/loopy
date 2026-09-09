@@ -42,6 +42,18 @@ function definitionArtifact(template: string, definition: MilestoneDefinition, p
     ...definition.content.unknowns.map((item) => `- **${item.blocking ? "Blocking unknown" : "Unknown"}:** ${item.description} Revisit when ${item.revisitWhen}.`),
   ];
   const receipt = (perspective: string) => definition.receipts.find((item) => item.perspective === perspective);
+  const currentBehavior = definition.content.currentBehavior ?? [];
+  const intendedBehavior = definition.content.intendedBehavior ?? [];
+  const evidence = definition.content.evidence ?? [];
+  const reconciliations = definition.content.reconciliations ?? [];
+  const behavior = [
+    ...(currentBehavior.length ? currentBehavior.map((value) => `- **Observed now:** ${value}`) : ["- **Observed now:** Not yet established."]),
+    ...(intendedBehavior.length ? intendedBehavior.map((value) => `- **Intended:** ${value}`) : ["- **Intended:** Captured by the outcome and requirements unless a current-versus-intended difference is discovered."]),
+  ].join("\n");
+  const evidenceAndReconciliation = [
+    ...evidence.map((item) => `- **${item.kind.replaceAll("-", " ")} — ${item.source}:** ${item.finding}`),
+    ...reconciliations.map((item) => `- **${item.status === "resolved" ? "Resolved" : item.material ? "Material unresolved conflict" : "Unresolved conflict"}:** ${item.disagreement} Sources: ${item.sources.join(", ")}. ${item.resolution || "No resolution recorded yet."}`),
+  ];
   const readiness = [
     `- **Host coherence:** ${definition.coherence.status}${definition.coherence.basis ? ` — ${definition.coherence.basis}` : ""}`,
     `- **Current review:** ${definition.reviewedRevision === definition.revision ? "Recorded" : "Needed"}`,
@@ -55,6 +67,8 @@ function definitionArtifact(template: string, definition: MilestoneDefinition, p
     publishedRevision: String(publishedRevision),
     outcome: definition.content.outcome.trim() || "Not yet defined.",
     requirements: bullets(definition.content.requirements, "No requirements recorded yet."),
+    behavior,
+    evidenceAndReconciliation: evidenceAndReconciliation.length ? evidenceAndReconciliation.join("\n") : "No material evidence conflict recorded.",
     inScope: bullets(definition.content.inScope, "No in-scope boundary recorded yet."),
     nonGoals: bullets(definition.content.nonGoals, "No non-goals recorded yet."),
     acceptance: bullets(definition.content.acceptance, "No observable acceptance boundary recorded yet."),

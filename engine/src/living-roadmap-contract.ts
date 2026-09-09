@@ -40,11 +40,12 @@ function strings(value: unknown, label: string): asserts value is string[] {
 export async function loadLivingRoadmapContract(path: string): Promise<LivingRoadmapContract> {
   const value = parse(await readFile(path, "utf8")) as unknown;
   record(value, "Living Roadmap contract");
-  known(value, ["version", "id", "required_product_phase", "generated_artifacts", "priority_order", "candidate_states",
+  known(value, ["version", "id", "allowed_product_phases", "product_confirmation_required_for_roadmap_work", "generated_artifacts", "priority_order", "candidate_states",
     "dependency_kinds", "dependency_boundaries", "multi_selection_atomic", "candidates_remain_uncommitted",
     "implementation_workspace_out_of_scope", "append_only_hash_linked_history", "rejected_operations_do_not_mutate"], "Living Roadmap contract");
   if (value.version !== 1 || value.id !== "living-roadmap-management" ||
-      value.required_product_phase !== "product-foundation-confirmed" ||
+      !isDeepStrictEqual(value.allowed_product_phases, ["draft", "blocked", "ready-for-product-confirmation", "product-foundation-confirmed"]) ||
+      value.product_confirmation_required_for_roadmap_work !== false ||
       !isDeepStrictEqual(value.generated_artifacts, ["LOOPY.md", "docs/loopy/Roadmap.md"]) ||
       !isDeepStrictEqual(value.priority_order, ROADMAP_PRIORITIES) ||
       !isDeepStrictEqual(value.candidate_states, CANDIDATE_STATES) ||
@@ -123,15 +124,16 @@ export function definitionEligibility(candidate: LivingRoadmapCandidate): { elig
 
 export function validateLivingRoadmapState(contract: LivingRoadmapContract, value: unknown): asserts value is LivingRoadmapState {
   record(value, "Living Roadmap state");
-  known(value, ["schemaVersion", "stage", "workspaceClass", "workspaceRoot", "productRevision", "revision", "nextCandidateNumber",
+  known(value, ["schemaVersion", "stage", "workspaceClass", "workspaceRoot", "productRevision", "productDraftVersion", "revision", "nextCandidateNumber",
     "candidates", "selectedBatches", "nextActions", "session", "history", "historyHead", "generatedViews"], "Living Roadmap state");
   if (value.schemaVersion !== 1 || value.stage !== "living-roadmap" || value.workspaceClass !== "human-project") {
     throw new ContractError("Living Roadmap state has an invalid schema or workspace class.");
   }
   nonEmpty(value.workspaceRoot, "workspaceRoot");
   for (const key of ["productRevision", "revision", "nextCandidateNumber"] as const) {
-    if (!Number.isInteger(value[key]) || value[key] < (key === "productRevision" ? 1 : 0)) throw new ContractError(`${key} is invalid.`);
+    if (!Number.isInteger(value[key]) || value[key] < 0) throw new ContractError(`${key} is invalid.`);
   }
+  if (value.productDraftVersion !== undefined && (!Number.isInteger(value.productDraftVersion) || value.productDraftVersion < 0)) throw new ContractError("productDraftVersion is invalid.");
   if (!Array.isArray(value.candidates)) throw new ContractError("candidates must be an array.");
   value.candidates.forEach((item, index) => validateCandidate(item, `candidates[${index}]`));
   const candidates = value.candidates as LivingRoadmapCandidate[];
