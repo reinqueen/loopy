@@ -136,6 +136,7 @@ Apply these examples in order to an initialized Product workspace.
 ## Invariants that commonly reject input
 
 - Objects reject unknown keys. Partial objects merge, but supplied arrays replace their prior value; include the full intended array.
+- Partial updates preserve omitted fields. When a Human answer resolves or changes earlier meaning, explicitly replace every affected Product and Roadmap field—including `productNotes`—so rendered artifacts do not retain a stale question or explanation.
 - `contextGrants` is the complete ledger. Scopes must be unique after canonical normalization. Repository-wide access requires `{scope: ".", kind: "whole-repository", basis: "explicitly-authorized"}`.
 - Every evidence `contextScope` must match a normalized grant. `context_conflict.triggered` must match whether any evidence has `conflictsWithIntent: true`.
 - `established` or `established_from_evidence` requires corresponding readable content. `explicitly_none` requires that content to be empty. Evidence-derived status requires recorded evidence.

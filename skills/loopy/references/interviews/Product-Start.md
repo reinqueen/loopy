@@ -54,7 +54,7 @@ Roadmap grouping becomes answerable only after the Product meaning it groups is 
 
 Ask conditional questions only for conflicting context, multiple audiences, external promises, high-consequence use, or a material replacement or transition. Do not repeat settled meaning unless new evidence changes it.
 
-For a correction, revise only affected meaning. For a deferral, record the decision, why it can wait, when it returns, and whether it blocks Product confirmation. On interruption, preserve grants and draft state. On resumption, recap briefly and continue from the next unresolved or blocking decision.
+For a correction, revise only affected meaning, including any Roadmap summary, lifecycle explanation, Product notes, candidate wording, next action, or other human-facing text that the new answer makes stale. Before stopping, reread the rendered Product artifacts and remove resolved questions or superseded explanations; a formally fresh view must not preserve a semantic contradiction. For a deferral, record the decision, why it can wait, when it returns, and whether it blocks Product confirmation. On interruption, preserve grants and draft state. On resumption, recap briefly and continue from the next unresolved or blocking decision.
 
 ## Review and confirm
 

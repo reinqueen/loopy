@@ -229,6 +229,8 @@ describe("default Socratic decision-coverage interview correction", () => {
     expect(product).toContain("Keep Product priority distinct from prerequisite-driven delivery order");
     expect(product).toContain("reflect what the evidence does establish and ask Product, or leave the priority visibly unresolved");
     expect(product).toContain("Do not turn “can proceed independently” or an Engineering sequencing fact into an inferred priority label or “after” relationship");
+    expect(product).toContain("including any Roadmap summary, lifecycle explanation, Product notes, candidate wording, next action, or other human-facing text that the new answer makes stale");
+    expect(product).toContain("reread the rendered Product artifacts and remove resolved questions or superseded explanations");
     expect(engineering).toContain("workspace is already known to be blank, reuse that fact");
     expect(engineering).toContain("Keep a declaration of Engineering responsibility separate from any context grant");
     expect(engineering).toContain("Elicit applicable Engineering intent and constraints before proposing solution hypotheses");
