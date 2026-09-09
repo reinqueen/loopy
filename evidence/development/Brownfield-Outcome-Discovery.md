@@ -26,3 +26,16 @@ Loopy intentionally does not copy the reference's exhaustive or relentless postu
 ## Claim boundary
 
 Automated tests establish formal transitions, non-mutation, anchors, conflict blocking, rendering, and route preservation. Only a fresh independent Host-AI walkthrough can judge question quality, non-redundancy, appropriate depth, reconciliation quality, Milestone boundaries, and stopping behavior.
+
+## Final evaluation
+
+- Host walkthrough: task `01a08486-5710-71a2-8330-a7b578fe0609`.
+- Independent evaluation: task `01a08491-77d4-76b1-b6c8-c1aa80741a23`.
+- Exact evaluated behavior commit: `4be4c5211aa5753a1493d60c79f0759ad998963a`.
+- Verdict: **PASS**. This is independent evaluation, not Human acceptance.
+
+The two-turn walkthrough inspected authorized evidence before interviewing, reconciled the three-retry documentation against source, tests, and Human intent, separated recovery from non-blocking support visibility, asked one high-value unresolved question, and preserved the same Roadmap candidates and Definition through a late clarification. The final human-facing views consistently routed to Definition review without confirming Product or committing a Milestone.
+
+The independent evaluator verified unchanged candidate and Definition identities, append-only histories, clean active Roadmap and Definition staleness checks, a clean source worktree, seven focused brownfield tests, and the full 191-test suite. One minor display issue remains: non-blocking unknown sentences can render with doubled periods. The older Product-only staleness command can also report downstream-composed shared views as changed; the active Roadmap and Definition checks remain authoritative and clean.
+
+This one walkthrough exercises the primary collaborative brownfield path. It does not prove every item in the broader 26-scenario behavioral matrix.
