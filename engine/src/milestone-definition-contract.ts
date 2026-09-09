@@ -8,6 +8,7 @@ import {
   DEFINITION_PHASES,
   SPECIALIST_MODES,
   type DefinitionContent,
+  type DefinitionDraftRevalidation,
   type DirectDefinitionStart,
   type DefinitionPerspective,
   type DefinitionUpdate,
@@ -145,7 +146,7 @@ function definition(value: unknown, label: string): asserts value is MilestoneDe
   value.history.forEach((entry: unknown, index: number) => {
     object(entry, `${label}.history[${index}]`); keys(entry, ["version", "operation", "summary", "beforeHash", "afterHash", "previousHash", "contentHash"], `${label}.history[${index}]`);
     if (entry.version !== index + 1) throw new ContractError(`${label} history versions must be sequential.`);
-    enumeration(entry.operation, ["update", "review", "confirm", "commit", "interrupt", "resume", "change-management"], `${label}.history[${index}].operation`);
+    enumeration(entry.operation, ["update", "review", "confirm", "commit", "interrupt", "resume", "draft-revalidation", "change-management"], `${label}.history[${index}].operation`);
     text(entry.summary, `${label}.history[${index}].summary`);
     for (const field of ["beforeHash", "afterHash", "contentHash"] as const) if (typeof entry[field] !== "string" || !/^[a-f0-9]{64}$/.test(entry[field])) throw new ContractError(`${label}.history[${index}].${field} is invalid.`);
     const { contentHash, ...withoutHash } = entry;
@@ -195,6 +196,16 @@ export function validateDefinitionUpdate(value: unknown): asserts value is Defin
     value.specialistInputs.forEach((input: unknown, index: number) => { object(input, `specialistInputs[${index}]`); keys(input, ["perspective", "reason", "mode", "status"], `specialistInputs[${index}]`); enumeration(input.perspective, ["architecture", "demo-quality", "release"], `specialistInputs[${index}].perspective`); text(input.reason, `specialistInputs[${index}].reason`); enumeration(input.mode, SPECIALIST_MODES, `specialistInputs[${index}].mode`); enumeration(input.status, ["needed", "satisfied"], `specialistInputs[${index}].status`); });
   }
   if (value.content === undefined && value.coherence === undefined && value.requiredPerspectives === undefined && value.specialistInputs === undefined) throw new ContractError("Definition update must change at least one field.");
+}
+
+export function validateDefinitionDraftRevalidation(value: unknown): asserts value is DefinitionDraftRevalidation {
+  object(value, "Definition draft revalidation");
+  keys(value, ["actor", "basis"], "Definition draft revalidation");
+  object(value.actor, "Definition draft revalidation.actor");
+  keys(value.actor, ["name", "perspectives"], "Definition draft revalidation.actor");
+  text(value.actor.name, "Definition draft revalidation.actor.name");
+  perspectives(value.actor.perspectives, "Definition draft revalidation.actor.perspectives");
+  text(value.basis, "Definition draft revalidation.basis");
 }
 
 export function validateDirectDefinitionStart(value: unknown): asserts value is DirectDefinitionStart {

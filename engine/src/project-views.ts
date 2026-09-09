@@ -215,13 +215,16 @@ export function writeProjectViews(input: {
   if (input.engineering && input.engineeringContract) validateEngineeringState(input.engineeringContract, input.engineering);
   if (input.livingRoadmap && input.livingRoadmapContract) validateLivingRoadmapState(input.livingRoadmapContract, input.livingRoadmap);
 
-  const milestoneDefinition = input.milestoneDefinition ?? loadMilestoneDefinitionStateIfPresent(root);
+  let milestoneDefinition = input.milestoneDefinition ?? loadMilestoneDefinitionStateIfPresent(root);
   const changeManagement = input.changeManagement ?? loadChangeManagementStateIfPresent(root);
   const discoveredPlanning = input.milestonePlanning ?? loadMilestonePlanningStateIfPresent(root);
   if (discoveredPlanning && discoveredPlanning.workspaceRoot !== root) throw new WorkspaceError("Milestone Planning state does not belong to the target workspace.");
   if (milestoneDefinition && milestoneDefinition.workspaceRoot !== root) throw new WorkspaceError("Milestone Definition state does not belong to the target workspace.");
   if (milestoneDefinition && (milestoneDefinition.productRevision !== input.product.revision || (milestoneDefinition.productDraftVersion !== undefined && milestoneDefinition.productDraftVersion !== input.product.draftVersion))) {
-    throw new ContractError("Milestone Definitions cannot be rendered against a different Product revision; a material change requires the later Change Management route.");
+    const safeUnconfirmedDrift = input.product.revision === 0 && milestoneDefinition.productRevision === 0 &&
+      milestoneDefinition.definitions.every((definition) => definition.phase !== "committed");
+    if (safeUnconfirmedDrift) milestoneDefinition = undefined;
+    else throw new ContractError("Milestone Definitions cannot be rendered against a different Product revision; a material change requires the later Change Management route.");
   }
   if (milestoneDefinition && (!input.livingRoadmap || milestoneDefinition.definitions.some((definition) =>
     !input.livingRoadmap!.candidates.some((candidate) => candidate.id === definition.sourceCandidateId && candidate.state === "Selected for definition")))) {

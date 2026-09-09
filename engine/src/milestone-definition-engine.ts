@@ -7,9 +7,10 @@ import { validateEngineeringState } from "./engineering-contract.js";
 import { validateLivingRoadmapState } from "./living-roadmap-contract.js";
 import { LivingRoadmapEngine } from "./living-roadmap-engine.js";
 import { definitionHistoryHash, definitionSnapshotHash } from "./milestone-definition-meaning.js";
-import { formalDefinitionGaps, loadMilestoneDefinitionContract, validateDefinitionUpdate, validateDirectDefinitionStart, validateMilestoneDefinitionState } from "./milestone-definition-contract.js";
+import { formalDefinitionGaps, loadMilestoneDefinitionContract, validateDefinitionDraftRevalidation, validateDefinitionUpdate, validateDirectDefinitionStart, validateMilestoneDefinitionState } from "./milestone-definition-contract.js";
 import type {
   DefinitionCommitRequest,
+  DefinitionDraftRevalidation,
   DirectDefinitionStart,
   DefinitionHistoryEntry,
   DefinitionPerspective,
@@ -125,11 +126,44 @@ export class MilestoneDefinitionEngine {
 
   loadState(workspaceRoot: string): MilestoneDefinitionState {
     const root = canonicalWorkspaceRoot(workspaceRoot);
-    const value = JSON.parse(readFileSync(resolveInsideWorkspace(root, MILESTONE_DEFINITION_STATE_PATH), "utf8")) as unknown;
-    validateMilestoneDefinitionState(value);
-    if (value.workspaceRoot !== root) throw new WorkspaceError("Milestone Definition state does not belong to the target workspace.");
+    const value = this.readState(root);
     this.assertAnchors(root, value);
     return value;
+  }
+
+  revalidateDraft(workspaceRoot: string, request: DefinitionDraftRevalidation): MilestoneDefinitionState {
+    validateDefinitionDraftRevalidation(request);
+    const root = canonicalWorkspaceRoot(workspaceRoot);
+    const current = this.readState(root);
+    const product = this.productEngine.loadState(root);
+    const roadmap = this.roadmapEngine.loadState(root);
+    if (current.productRevision !== 0 || product.revision !== 0) throw new ContractError("A previously confirmed Product boundary requires Change Management.");
+    if (current.definitions.some((item) => item.phase === "committed")) throw new ContractError("Committed Definitions require Change Management.");
+    if (roadmap.productRevision !== product.revision || roadmap.productDraftVersion !== product.draftVersion) {
+      throw new ContractError("Reconcile the Living Roadmap with the current Product draft before Definition revalidation.");
+    }
+    if (current.productDraftVersion === product.draftVersion && current.roadmapRevision === roadmap.revision) {
+      throw new ContractError("Milestone Definitions already match the current draft anchors.");
+    }
+    for (const definition of current.definitions) {
+      const candidate = roadmap.candidates.find((item) => item.id === definition.sourceCandidateId);
+      if (!candidate || candidate.state !== "Selected for definition") throw new ContractError("Definition source selection must remain intact during draft revalidation.");
+    }
+    const next = clone(current);
+    next.productDraftVersion = product.draftVersion;
+    next.roadmapRevision = roadmap.revision;
+    for (const definition of next.definitions) {
+      const before = clone(definition);
+      definition.revision += 1;
+      definition.reviewedRevision = null;
+      definition.receipts = [];
+      definition.coherence = { status: "draft", basis: "" };
+      definition.phase = "draft";
+      this.appendHistory(before, definition, "draft-revalidation", `Revalidated uncommitted draft anchors from ${request.actor.name}: ${request.basis.trim()}`);
+    }
+    this.advance(next);
+    this.write(root, next);
+    return clone(next);
   }
 
   applyUpdate(workspaceRoot: string, update: DefinitionUpdate): MilestoneDefinitionState {
@@ -249,6 +283,12 @@ export class MilestoneDefinitionEngine {
     const definition = state.definitions.find((item) => item.id === id);
     if (!definition) throw new ContractError(`Unknown Definition identity: ${id}.`);
     return definition;
+  }
+  private readState(root: string): MilestoneDefinitionState {
+    const value = JSON.parse(readFileSync(resolveInsideWorkspace(root, MILESTONE_DEFINITION_STATE_PATH), "utf8")) as unknown;
+    validateMilestoneDefinitionState(value);
+    if (value.workspaceRoot !== root) throw new WorkspaceError("Milestone Definition state does not belong to the target workspace.");
+    return value;
   }
   private assertAnchors(workspaceRoot: string, state: MilestoneDefinitionState): void {
     const product = this.productEngine.loadState(workspaceRoot); const roadmap = this.roadmapEngine.loadState(workspaceRoot);

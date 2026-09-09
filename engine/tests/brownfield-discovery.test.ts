@@ -133,6 +133,52 @@ describe("brownfield discovery and flexible entry", () => {
     expect(view).toContain("Keep one automatic retry");
   });
 
+  it("classifies explicit independence so it does not become an artificial selection blocker", async () => {
+    const root = workspace();
+    await product.initialize(root, "Billing Service", { participantResponsibilities: ["product", "engineering"] });
+    product.applyUpdate(root, { roadmap: { candidates: [
+      { title: "Customer recovery", outcome: "Customers recover failed payments safely.", priority: "Highest", rationale: "Immediate customer value.", dependencies: [], nextAction: "Define recovery", commitment: "uncommitted" },
+      { title: "Support visibility", outcome: "Support sees recovery attempts and failures.", priority: "Later", rationale: "Separate operational value.", dependencies: ["Independent of customer recovery"], nextAction: "Shape visibility", commitment: "uncommitted" },
+    ] } });
+    let state = roadmap.initialize(root);
+    expect(state.candidates[1].unresolvedDependencyNotes).toEqual(["Independent of customer recovery"]);
+    state = roadmap.applyOperation(root, {
+      type: "set-dependencies",
+      candidateId: "candidate-2",
+      dependencies: [{ candidateId: "candidate-1", kind: "independent-potentially-parallel", boundary: "implementation", note: "The Humans confirmed these outcomes are independent.", recommendedBy: "Product" }],
+      actor: { name: "Avery and Morgan", responsibility: "product" },
+    });
+    expect(state.candidates[1].unresolvedDependencyNotes).toEqual([]);
+    expect(() => roadmap.applyOperation(root, { type: "select", candidateIds: ["candidate-2"], actor: { name: "Avery", responsibility: "product" } })).not.toThrow();
+  });
+
+  it("revalidates evolving never-confirmed drafts without rebuilding lifecycle state", async () => {
+    const root = workspace();
+    let state = await definition.initializeDirect(root, {
+      projectName: "Billing Service",
+      participantResponsibilities: ["product", "engineering"],
+      title: "Reliable invoice retry",
+      outcome: "Customers recover failed invoices without duplicate charges.",
+      priority: "Highest",
+      rationale: "The Humans selected the recovery outcome.",
+      nextShapingStep: "Define recovery behavior",
+      actor: { name: "Avery", responsibility: "product" },
+    });
+    const definitionId = state.definitions[0].id;
+    const candidateId = state.definitions[0].sourceCandidateId;
+    product.applyUpdate(root, { product: { outcome: "Customers recover failed invoices through one automatic retry followed by safe manual recovery." } });
+    roadmap.applyOperation(root, { type: "reconcile-product", actor: { name: "Avery and Morgan", responsibility: "product" } });
+    state = definition.revalidateDraft(root, {
+      actor: { name: "Avery and Morgan", perspectives: ["product", "engineering"] },
+      basis: "The later answer refined the unconfirmed retry policy and was checked against the preserved Definition.",
+    });
+    expect(state.definitions[0].id).toBe(definitionId);
+    expect(state.definitions[0].sourceCandidateId).toBe(candidateId);
+    expect(state.definitions[0].history.at(-1)?.operation).toBe("draft-revalidation");
+    expect(state.definitions[0].coherence.status).toBe("draft");
+    expect(state.productDraftVersion).toBe(product.loadState(root).draftVersion);
+  });
+
   it("keeps every existing entry route visible while removing chronology as a discovery gate", () => {
     const skill = readFileSync(join(sourceRoot, "skills/loopy/SKILL.md"), "utf8");
     for (const route of ["Product-Start.md", "Engineering-Foundation.md", "Living-Roadmap.md", "Milestone-Definition.md", "Change-Management.md", "Milestone-Planning.md", "Milestone-Build-and-Prove.md", "Milestone-Demonstrate-and-Accept.md"]) {

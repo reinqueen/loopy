@@ -79,7 +79,7 @@ export interface DefinitionReceipt {
 
 export interface DefinitionHistoryEntry {
   version: number;
-  operation: "update" | "review" | "confirm" | "commit" | "interrupt" | "resume" | "change-management";
+  operation: "update" | "review" | "confirm" | "commit" | "interrupt" | "resume" | "draft-revalidation" | "change-management";
   summary: string;
   beforeHash: string;
   afterHash: string;
@@ -137,6 +137,11 @@ export interface DefinitionCommitRequest {
   participant: string;
   perspectives: DefinitionPerspective[];
   commit: boolean;
+}
+
+export interface DefinitionDraftRevalidation {
+  actor: { name: string; perspectives: DefinitionPerspective[] };
+  basis: string;
 }
 
 export interface MilestoneDefinitionContract {
