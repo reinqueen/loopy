@@ -178,7 +178,7 @@ describe("default Socratic decision-coverage interview correction", () => {
     expect(skill).toContain("Use a Socratic decision-coverage interview by default");
     expect(skill).toContain("dependency-aware tree");
     expect(skill).toContain("question frontier");
-    expect(skill).toContain("at most three related answerable decisions");
+    expect(skill).toContain("at most five related answerable decisions");
     expect(skill).toContain("including nested subquestions, bullets, alternatives, and clauses");
     expect(skill).toContain("Prefer fewer high-information questions");
     expect(skill).toContain("recompute the frontier");
@@ -191,6 +191,10 @@ describe("default Socratic decision-coverage interview correction", () => {
     expect(skill).toContain("Humans may contribute across lifecycle concerns");
     expect(skill).toContain("confirm each consequential decision under the responsibility boundary");
     expect(skill).toContain("### Select the move after each response");
+    expect(skill).toContain("rank them by impact on the current target");
+    expect(skill).toContain("normally batch the next two or three related questions");
+    expect(skill).toContain("Five related questions is the hard per-round maximum");
+    expect(skill).toContain("Claude Code's when available");
     expect(skill).toContain("what was learned or confirmed");
     expect(skill).toContain("what remains materially unclear or unresolved");
     expect(skill).toContain("whether the answer introduced ambiguity, conflict, an assumption, a dependency, or an evidence need");
@@ -199,7 +203,7 @@ describe("default Socratic decision-coverage interview correction", () => {
     expect(skill).toContain("An **understanding gap** means");
     expect(skill).toContain("A **decision gap** means");
     expect(skill).toContain("A response does not by itself authorize advancing coverage");
-    expect(skill).toContain("Prefer one move");
+    expect(skill).toContain("Prefer a small batch of related");
     expect(skill).toContain("A transient understanding gap stays in the conversation");
     for (const move of [
       "probe current meaning",

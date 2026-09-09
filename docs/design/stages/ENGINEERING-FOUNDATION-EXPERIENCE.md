@@ -29,7 +29,7 @@ Use project-wide defaults with component exceptions. Do not repeat defaults for 
 
 ## Adaptive interview
 
-Loopy inspects authorized evidence first, finds missing or conflicting Engineering decisions, and asks up to three related questions with labeled recommendations. It reassesses after each answer and asks only what closes coverage or exposes consequences.
+Loopy inspects authorized evidence first, finds missing or conflicting Engineering decisions, and asks up to five related questions with labeled recommendations. It reassesses after each answer and asks only what closes coverage or exposes consequences.
 
 The Human may correct, defer with consequences and revisit conditions, limit context, pause, or resume from the next recorded gap. Loopy does not ask Engineering to decide Product outcomes or priority, Demo acceptance, Release authorization, or publication. Another responsibility applies only when the person states it explicitly.
 

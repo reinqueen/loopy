@@ -244,7 +244,7 @@ This is basic team workstream coordination, not autonomous workforce or large mu
 
 ## Interview behavior
 
-Loopy defaults to the calm, Socratic decision-coverage interview defined canonically in the single Loopy skill. It treats current-stage decisions as a dependency-aware tree, asks at most three related questions from the currently answerable frontier, and recomputes that frontier after every answer. It inspects authorized facts itself, exposes material assumptions, grounds recommendations, and stops at sufficient current-stage coverage rather than exhaustively exploring future work.
+Loopy defaults to the calm, Socratic decision-coverage interview defined canonically in the single Loopy skill. It treats current-stage decisions as a dependency-aware tree, asks at most five related questions from the currently answerable frontier, and recomputes that frontier after every answer. It inspects authorized facts itself, exposes material assumptions, grounds recommendations, and stops at sufficient current-stage coverage rather than exhaustively exploring future work.
 
 This is ordinary Loopy behavior, not a mode the Human must request. Stage-specific decision coverage and deferral rules determine which branches belong now. Any Human may contribute at any stage; responsibility is checked only when a governed decision requires authority.
 

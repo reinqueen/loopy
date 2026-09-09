@@ -35,7 +35,7 @@ Conditional coverage applies only to conflicting context, multiple audiences, ex
 
 ## Adaptive loop
 
-Loopy identifies the current stage and responsibility, checks coverage, proposes answers from authorized evidence, and asks up to three related questions. After each response it reassesses ambiguity, risk, conflict, and consequences. It drills deeper only when useful and never repeats settled meaning without new evidence.
+Loopy identifies the current stage and responsibility, checks coverage, proposes answers from authorized evidence, and asks up to five related questions. After each response it reassesses ambiguity, risk, conflict, and consequences. It drills deeper only when useful and never repeats settled meaning without new evidence.
 
 - **Correction:** update only affected meaning.
 - **Deferral:** record the decision, consequence, and revisit condition.
