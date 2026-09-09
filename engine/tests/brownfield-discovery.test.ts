@@ -128,9 +128,15 @@ describe("brownfield discovery and flexible entry", () => {
     expect(state.definitions[0].phase).toBe("draft");
     definition.renderCurrent(root);
     const view = readFileSync(join(root, state.definitions[0].artifactPath), "utf8");
+    const home = readFileSync(join(root, "LOOPY.md"), "utf8");
+    const roadmapView = readFileSync(join(root, "docs/loopy/Roadmap.md"), "utf8");
     expect(view).toContain("Code performs one automatic retry");
     expect(view).toContain("Resolved");
     expect(view).toContain("Keep one automatic retry");
+    expect(home).toContain("Product foundation remains unconfirmed; current Milestone Definition work is shown below");
+    expect(home).not.toContain("Resolve retry ownership");
+    expect(roadmapView).toContain("Review the current Definition");
+    expect(roadmapView).not.toContain("Resolve retry ownership");
   });
 
   it("classifies explicit independence so it does not become an artificial selection blocker", async () => {

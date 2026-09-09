@@ -30,6 +30,14 @@ function dependencyKind(kind: MilestoneDefinition["content"]["dependencies"][num
   if (kind === "helpful-non-blocking") return "Helpful, non-blocking";
   return "Independent, potentially parallel";
 }
+function currentDefinitionAction(definition: MilestoneDefinition): string {
+  if (definition.phase === "committed") return "Begin Milestone Planning";
+  if (definition.phase === "blocked") return "Resolve the Definition blocker";
+  if (definition.reviewedRevision !== definition.revision) return definition.coherence.status === "coherent"
+    ? "Review the current Definition"
+    : "Continue Milestone Definition";
+  return "Confirm or correct the current Definition";
+}
 function definitionArtifact(template: string, definition: MilestoneDefinition, publishedRevision: number): string {
   const dependencies = definition.content.dependencies.length ? [
     "| Dependency | Relationship | Consequence | Meaning |",
@@ -127,6 +135,12 @@ export function renderMilestoneDefinitionArtifacts(
   roadmap = roadmap.replace(/## Product questions to revisit/, `${section}\n## Product questions to revisit`);
   roadmap = roadmap.replace(/## Next action\n\n[\s\S]*?(?=\n## Selected for Milestone Definition)/,
     `## Next action\n\n**${next.participant}: ${next.action}**\n\n${next.reason}\n`);
+  for (const definition of definitions) {
+    const marker = `**${escape(definition.sourceCandidateTitle)}:**`;
+    roadmap = roadmap.split("\n").map((line) => line.includes(marker) && line.includes("| Selected; Definition not committed. |")
+      ? line.replace(/\| [^|]* \|$/, `| ${currentDefinitionAction(definition)} |`)
+      : line).join("\n");
+  }
   let home = base["LOOPY.md"].replace("## Current work\n", [
     "## Milestone Definitions",
     "",
@@ -140,6 +154,8 @@ export function renderMilestoneDefinitionArtifacts(
   ].join("\n"));
   home = home.replace(/## Next action\n\n[\s\S]*?(?=\n## Blockers)/,
     `## Next action\n\n**${next.participant}: ${next.action}**\n\n${next.reason}\n`);
+  home = home.replace(/^\| Product \| ([^|]+) \| [^|]* \|$/m,
+    "| Product | $1 | Product foundation remains unconfirmed; current Milestone Definition work is shown below |");
   const definitionBlockers = drafts.filter((item) => item.phase === "blocked").map((item) => `**${item.sourceCandidateTitle}:** ${blocker(item)}`);
   if (definitionBlockers.length) {
     if (home.includes("## Blockers\n\nNo current blockers.")) home = home.replace("## Blockers\n\nNo current blockers.", `## Blockers\n\n${definitionBlockers.join("\n")}`);
